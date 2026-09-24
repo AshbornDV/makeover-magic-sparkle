@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: nexa-topup-preview
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: DEMO_MODE
+        value: "true"

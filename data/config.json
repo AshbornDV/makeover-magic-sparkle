@@ -1,0 +1,1853 @@
+{
+  "brand": {
+    "name": "NEXA TOPUP",
+    "tagline": "Fast game credits. Local payment. Global reach."
+  },
+  "countries": [
+    {
+      "code": "NP",
+      "name": "Nepal",
+      "currency": "NPR",
+      "symbol": "Rs.",
+      "methods": [
+        "esewa",
+        "khalti",
+        "fonepay",
+        "bank"
+      ]
+    },
+    {
+      "code": "IN",
+      "name": "India",
+      "currency": "INR",
+      "symbol": "₹",
+      "methods": [
+        "upi",
+        "cards"
+      ]
+    },
+    {
+      "code": "BD",
+      "name": "Bangladesh",
+      "currency": "BDT",
+      "symbol": "৳",
+      "methods": [
+        "bkash",
+        "cards"
+      ]
+    },
+    {
+      "code": "BT",
+      "name": "Bhutan",
+      "currency": "BTN",
+      "symbol": "Nu.",
+      "methods": [
+        "cards",
+        "bank"
+      ]
+    },
+    {
+      "code": "LK",
+      "name": "Sri Lanka",
+      "currency": "LKR",
+      "symbol": "Rs.",
+      "methods": [
+        "cards",
+        "bank"
+      ]
+    },
+    {
+      "code": "PK",
+      "name": "Pakistan",
+      "currency": "PKR",
+      "symbol": "Rs.",
+      "methods": [
+        "cards",
+        "bank"
+      ]
+    },
+    {
+      "code": "AE",
+      "name": "UAE",
+      "currency": "AED",
+      "symbol": "د.إ",
+      "methods": [
+        "cards",
+        "applepay",
+        "googlepay"
+      ]
+    },
+    {
+      "code": "US",
+      "name": "United States",
+      "currency": "USD",
+      "symbol": "$",
+      "methods": [
+        "cards",
+        "applepay",
+        "googlepay"
+      ]
+    }
+  ],
+  "demoRatesToNPR": {
+    "NPR": 1,
+    "INR": 1.6,
+    "BDT": 1.42,
+    "BTN": 1,
+    "LKR": 0.48,
+    "PKR": 0.55,
+    "AED": 40,
+    "USD": 153.49
+  },
+  "products": [
+    {
+      "id": "mlbb-86-global",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "86 Diamonds",
+      "units": "86 Diamonds",
+      "priceNpr": 210,
+      "fields": [
+        "userId",
+        "zoneId"
+      ],
+      "hot": true,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-172-global",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "172 Diamonds",
+      "units": "172 Diamonds",
+      "priceNpr": 420,
+      "fields": [
+        "userId",
+        "zoneId"
+      ],
+      "hot": true,
+      "category": "MOBILE"
+    },
+    {
+      "id": "ff-100",
+      "game": "Free Fire",
+      "slug": "free-fire",
+      "region": "Nepal",
+      "title": "100 Diamonds",
+      "units": "100 Diamonds",
+      "priceNpr": 100,
+      "fields": [
+        "playerId"
+      ],
+      "hot": true,
+      "category": "MOBILE"
+    },
+    {
+      "id": "ff-310",
+      "game": "Free Fire",
+      "slug": "free-fire",
+      "region": "Nepal",
+      "title": "310 Diamonds",
+      "units": "310 Diamonds",
+      "priceNpr": 270,
+      "fields": [
+        "playerId"
+      ],
+      "hot": true,
+      "category": "MOBILE"
+    },
+    {
+      "id": "pubg-60",
+      "game": "PUBG Mobile",
+      "slug": "pubg-mobile",
+      "region": "Global",
+      "title": "60 UC",
+      "units": "60 UC",
+      "priceNpr": 145,
+      "fields": [
+        "playerId"
+      ],
+      "hot": true,
+      "category": "MOBILE"
+    },
+    {
+      "id": "pubg-325",
+      "game": "PUBG Mobile",
+      "slug": "pubg-mobile",
+      "region": "Global",
+      "title": "325 UC",
+      "units": "325 UC",
+      "priceNpr": 715,
+      "fields": [
+        "playerId"
+      ],
+      "category": "MOBILE"
+    },
+    {
+      "id": "genshin-300",
+      "game": "Genshin Impact",
+      "slug": "genshin",
+      "region": "Global",
+      "title": "300 Genesis Crystals",
+      "units": "300 Crystals",
+      "priceNpr": 650,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "hot": true,
+      "category": "MOBILE"
+    },
+    {
+      "id": "hsr-300",
+      "game": "Honkai: Star Rail",
+      "slug": "honkai-star-rail",
+      "region": "Global",
+      "title": "300 Oneiric Shard",
+      "units": "300 Shards",
+      "priceNpr": 650,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE"
+    },
+    {
+      "id": "zzz-300",
+      "game": "Zenless Zone Zero",
+      "slug": "zzz",
+      "region": "Global",
+      "title": "300 Monochromes",
+      "units": "300 Monochromes",
+      "priceNpr": 650,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE"
+    },
+    {
+      "id": "valorant-475",
+      "game": "Valorant",
+      "slug": "valorant",
+      "region": "Nepal/India",
+      "title": "475 VP",
+      "units": "475 VP",
+      "priceNpr": 850,
+      "fields": [
+        "riotId",
+        "tagline"
+      ],
+      "hot": true,
+      "category": "PC"
+    },
+    {
+      "id": "roblox-400",
+      "game": "Roblox",
+      "slug": "roblox",
+      "region": "Global",
+      "title": "400 Robux",
+      "units": "400 Robux",
+      "priceNpr": 825,
+      "fields": [
+        "username"
+      ],
+      "category": "MOBILE"
+    },
+    {
+      "id": "steam-5",
+      "game": "Steam Wallet",
+      "slug": "steam",
+      "region": "Global account",
+      "title": "Steam Global $5",
+      "units": "$5",
+      "priceNpr": 1176,
+      "fields": [
+        "email"
+      ],
+      "category": "PC"
+    },
+    {
+      "id": "codm-80",
+      "game": "Call of Duty Mobile",
+      "slug": "codm",
+      "region": "Global",
+      "title": "80 CP",
+      "units": "80 CP",
+      "priceNpr": 170,
+      "fields": [
+        "playerId",
+        "region"
+      ],
+      "category": "MOBILE"
+    },
+    {
+      "id": "hok-100",
+      "game": "Honor of Kings",
+      "slug": "honor-of-kings",
+      "region": "Global",
+      "title": "100 Tokens",
+      "units": "100 Tokens",
+      "priceNpr": 220,
+      "fields": [
+        "playerId",
+        "server"
+      ],
+      "category": "MOBILE"
+    },
+    {
+      "id": "bloodstrike-100",
+      "game": "Blood Strike",
+      "slug": "blood-strike",
+      "region": "Global",
+      "title": "100 Gold",
+      "units": "100 Gold",
+      "priceNpr": 190,
+      "fields": [
+        "playerId",
+        "region"
+      ],
+      "category": "MOBILE"
+    },
+    {
+      "id": "brawl-170",
+      "game": "Brawl Stars",
+      "slug": "brawl-stars",
+      "region": "Nepal",
+      "title": "170 + 17 Gems",
+      "units": "170 + 17 Gems",
+      "priceNpr": 1450,
+      "fields": [
+        "supercellEmail"
+      ],
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-44",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "44 Diamonds",
+      "units": "44 Diamonds",
+      "priceNpr": 135,
+      "fields": [
+        "userId",
+        "zoneId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-257",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "257 Diamonds",
+      "units": "257 Diamonds",
+      "priceNpr": 652,
+      "fields": [
+        "userId",
+        "zoneId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-344",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "344 Diamonds",
+      "units": "344 Diamonds",
+      "priceNpr": 851,
+      "fields": [
+        "userId",
+        "zoneId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-429",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "429 Diamonds",
+      "units": "429 Diamonds",
+      "priceNpr": 1068,
+      "fields": [
+        "userId",
+        "zoneId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-514",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "514 Diamonds",
+      "units": "514 Diamonds",
+      "priceNpr": 1230,
+      "fields": [
+        "userId",
+        "zoneId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-706",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "706 Diamonds",
+      "units": "706 Diamonds",
+      "priceNpr": 1685,
+      "fields": [
+        "userId",
+        "zoneId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-1050",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "1050 Diamonds",
+      "units": "1050 Diamonds",
+      "priceNpr": 2544,
+      "fields": [
+        "userId",
+        "zoneId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-1412",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "1412 Diamonds",
+      "units": "1412 Diamonds",
+      "priceNpr": 3431,
+      "fields": [
+        "userId",
+        "zoneId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-2195",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "2195 Diamonds",
+      "units": "2195 Diamonds",
+      "priceNpr": 5085,
+      "fields": [
+        "userId",
+        "zoneId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-3688",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "3688 Diamonds",
+      "units": "3688 Diamonds",
+      "priceNpr": 8484,
+      "fields": [
+        "userId",
+        "zoneId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-5532",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "5532 Diamonds",
+      "units": "5532 Diamonds",
+      "priceNpr": 12809,
+      "fields": [
+        "userId",
+        "zoneId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-9288",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "9288 Diamonds",
+      "units": "9288 Diamonds",
+      "priceNpr": 21277,
+      "fields": [
+        "userId",
+        "zoneId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-weekly-pass",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "Weekly Diamond Pass",
+      "units": "Weekly Diamond Pass",
+      "priceNpr": 240,
+      "fields": [
+        "userId",
+        "zoneId"
+      ],
+      "hot": true,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-weekly-elite",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "Weekly Elite Bundle",
+      "units": "Weekly Elite Bundle",
+      "priceNpr": 170,
+      "fields": [
+        "userId",
+        "zoneId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-monthly-epic",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "Monthly Epic Bundle",
+      "units": "Monthly Epic Bundle",
+      "priceNpr": 670,
+      "fields": [
+        "userId",
+        "zoneId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-twilight",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "Twilight Pass",
+      "units": "Twilight Pass",
+      "priceNpr": 1390,
+      "fields": [
+        "userId",
+        "zoneId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "ff-520",
+      "game": "Free Fire",
+      "slug": "free-fire",
+      "region": "Nepal",
+      "title": "520 Diamonds",
+      "units": "520 Diamonds",
+      "priceNpr": 450,
+      "fields": [
+        "playerId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "ff-1060",
+      "game": "Free Fire",
+      "slug": "free-fire",
+      "region": "Nepal",
+      "title": "1060 Diamonds",
+      "units": "1060 Diamonds",
+      "priceNpr": 880,
+      "fields": [
+        "playerId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "ff-2180",
+      "game": "Free Fire",
+      "slug": "free-fire",
+      "region": "Nepal",
+      "title": "2180 Diamonds",
+      "units": "2180 Diamonds",
+      "priceNpr": 1750,
+      "fields": [
+        "playerId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "ff-5600",
+      "game": "Free Fire",
+      "slug": "free-fire",
+      "region": "Nepal",
+      "title": "5600 Diamonds",
+      "units": "5600 Diamonds",
+      "priceNpr": 3500,
+      "fields": [
+        "playerId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "ff-11500",
+      "game": "Free Fire",
+      "slug": "free-fire",
+      "region": "Nepal",
+      "title": "11500 Diamonds",
+      "units": "11500 Diamonds",
+      "priceNpr": 7000,
+      "fields": [
+        "playerId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "ff-weekly",
+      "game": "Free Fire",
+      "slug": "free-fire",
+      "region": "Nepal",
+      "title": "Weekly Membership",
+      "units": "Weekly Membership",
+      "priceNpr": 205,
+      "fields": [
+        "playerId"
+      ],
+      "hot": true,
+      "category": "MOBILE"
+    },
+    {
+      "id": "ff-monthly",
+      "game": "Free Fire",
+      "slug": "free-fire",
+      "region": "Nepal",
+      "title": "Monthly Membership",
+      "units": "Monthly Membership",
+      "priceNpr": 1020,
+      "fields": [
+        "playerId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "pubg-120",
+      "game": "PUBG Mobile",
+      "slug": "pubg-mobile",
+      "region": "Global",
+      "title": "120 UC",
+      "units": "120 UC",
+      "priceNpr": 280,
+      "fields": [
+        "playerId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "pubg-180",
+      "game": "PUBG Mobile",
+      "slug": "pubg-mobile",
+      "region": "Global",
+      "title": "180 UC",
+      "units": "180 UC",
+      "priceNpr": 420,
+      "fields": [
+        "playerId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "pubg-660",
+      "game": "PUBG Mobile",
+      "slug": "pubg-mobile",
+      "region": "Global",
+      "title": "660 UC",
+      "units": "660 UC",
+      "priceNpr": 1500,
+      "fields": [
+        "playerId"
+      ],
+      "hot": true,
+      "category": "MOBILE"
+    },
+    {
+      "id": "pubg-985",
+      "game": "PUBG Mobile",
+      "slug": "pubg-mobile",
+      "region": "Global",
+      "title": "985 UC",
+      "units": "985 UC",
+      "priceNpr": 2300,
+      "fields": [
+        "playerId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "pubg-1800",
+      "game": "PUBG Mobile",
+      "slug": "pubg-mobile",
+      "region": "Global",
+      "title": "1800 UC",
+      "units": "1800 UC",
+      "priceNpr": 3990,
+      "fields": [
+        "playerId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "pubg-3850",
+      "game": "PUBG Mobile",
+      "slug": "pubg-mobile",
+      "region": "Global",
+      "title": "3850 UC",
+      "units": "3850 UC",
+      "priceNpr": 7900,
+      "fields": [
+        "playerId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "pubg-8100",
+      "game": "PUBG Mobile",
+      "slug": "pubg-mobile",
+      "region": "Global",
+      "title": "8100 UC",
+      "units": "8100 UC",
+      "priceNpr": 15300,
+      "fields": [
+        "playerId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "pubg-prime",
+      "game": "PUBG Mobile",
+      "slug": "pubg-mobile",
+      "region": "Global",
+      "title": "Prime Pass",
+      "units": "Prime Pass",
+      "priceNpr": 170,
+      "fields": [
+        "playerId"
+      ],
+      "hot": true,
+      "category": "MOBILE"
+    },
+    {
+      "id": "pubg-prime-plus",
+      "game": "PUBG Mobile",
+      "slug": "pubg-mobile",
+      "region": "Global",
+      "title": "Prime Plus",
+      "units": "Prime Plus",
+      "priceNpr": 1600,
+      "fields": [
+        "playerId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "pubg-prime-combo",
+      "game": "PUBG Mobile",
+      "slug": "pubg-mobile",
+      "region": "Global",
+      "title": "Prime Combo",
+      "units": "Prime Combo",
+      "priceNpr": 1700,
+      "fields": [
+        "playerId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "pubg-16200",
+      "game": "PUBG Mobile",
+      "slug": "pubg-mobile",
+      "region": "Global",
+      "title": "16200 UC",
+      "units": "16200 UC",
+      "priceNpr": 30500,
+      "fields": [
+        "playerId"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "genshin-60",
+      "game": "Genshin Impact",
+      "slug": "genshin",
+      "region": "Global",
+      "title": "60 Genesis Crystals",
+      "units": "60 Genesis Crystals",
+      "priceNpr": 209,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "genshin-330",
+      "game": "Genshin Impact",
+      "slug": "genshin",
+      "region": "Global",
+      "title": "330 Genesis Crystals",
+      "units": "330 Genesis Crystals",
+      "priceNpr": 897,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "hot": true,
+      "category": "MOBILE"
+    },
+    {
+      "id": "genshin-1090",
+      "game": "Genshin Impact",
+      "slug": "genshin",
+      "region": "Global",
+      "title": "1090 Genesis Crystals",
+      "units": "1090 Genesis Crystals",
+      "priceNpr": 3161,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "genshin-2240",
+      "game": "Genshin Impact",
+      "slug": "genshin",
+      "region": "Global",
+      "title": "2240 Genesis Crystals",
+      "units": "2240 Genesis Crystals",
+      "priceNpr": 6324,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "genshin-3680",
+      "game": "Genshin Impact",
+      "slug": "genshin",
+      "region": "Global",
+      "title": "3680 Genesis Crystals",
+      "units": "3680 Genesis Crystals",
+      "priceNpr": 10542,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "genshin-8080",
+      "game": "Genshin Impact",
+      "slug": "genshin",
+      "region": "Global",
+      "title": "8080 Genesis Crystals",
+      "units": "8080 Genesis Crystals",
+      "priceNpr": 19936,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "genshin-welkin",
+      "game": "Genshin Impact",
+      "slug": "genshin",
+      "region": "Global",
+      "title": "Blessing of the Welkin Moon",
+      "units": "Blessing of the Welkin Moon",
+      "priceNpr": 1052,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "hot": true,
+      "category": "MOBILE"
+    },
+    {
+      "id": "hsr-60",
+      "game": "Honkai: Star Rail",
+      "slug": "honkai-star-rail",
+      "region": "Global",
+      "title": "60 Oneiric Shards",
+      "units": "60 Oneiric Shards",
+      "priceNpr": 170,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "hsr-330",
+      "game": "Honkai: Star Rail",
+      "slug": "honkai-star-rail",
+      "region": "Global",
+      "title": "330 Oneiric Shards",
+      "units": "330 Oneiric Shards",
+      "priceNpr": 690,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": true
+    },
+    {
+      "id": "hsr-1090",
+      "game": "Honkai: Star Rail",
+      "slug": "honkai-star-rail",
+      "region": "Global",
+      "title": "1090 Oneiric Shards",
+      "units": "1090 Oneiric Shards",
+      "priceNpr": 2050,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "hsr-1390",
+      "game": "Honkai: Star Rail",
+      "slug": "honkai-star-rail",
+      "region": "Global",
+      "title": "1390 Oneiric Shards",
+      "units": "1390 Oneiric Shards",
+      "priceNpr": 2730,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "hsr-2240",
+      "game": "Honkai: Star Rail",
+      "slug": "honkai-star-rail",
+      "region": "Global",
+      "title": "2240 Oneiric Shards",
+      "units": "2240 Oneiric Shards",
+      "priceNpr": 4450,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "hsr-3880",
+      "game": "Honkai: Star Rail",
+      "slug": "honkai-star-rail",
+      "region": "Global",
+      "title": "3880 Oneiric Shards",
+      "units": "3880 Oneiric Shards",
+      "priceNpr": 6750,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "hsr-4870",
+      "game": "Honkai: Star Rail",
+      "slug": "honkai-star-rail",
+      "region": "Global",
+      "title": "4870 Oneiric Shards",
+      "units": "4870 Oneiric Shards",
+      "priceNpr": 8450,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "hsr-8080",
+      "game": "Honkai: Star Rail",
+      "slug": "honkai-star-rail",
+      "region": "Global",
+      "title": "8080 Oneiric Shards",
+      "units": "8080 Oneiric Shards",
+      "priceNpr": 13500,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "hsr-11960",
+      "game": "Honkai: Star Rail",
+      "slug": "honkai-star-rail",
+      "region": "Global",
+      "title": "11960 Oneiric Shards",
+      "units": "11960 Oneiric Shards",
+      "priceNpr": 19700,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "hsr-express-pass",
+      "game": "Honkai: Star Rail",
+      "slug": "honkai-star-rail",
+      "region": "Global",
+      "title": "Express Supply Pass",
+      "units": "Express Supply Pass",
+      "priceNpr": 680,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": true
+    },
+    {
+      "id": "zzz-60",
+      "game": "Zenless Zone Zero",
+      "slug": "zzz",
+      "region": "Global",
+      "title": "60 Monochromes",
+      "units": "60 Monochromes",
+      "priceNpr": 170,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "zzz-330",
+      "game": "Zenless Zone Zero",
+      "slug": "zzz",
+      "region": "Global",
+      "title": "330 Monochromes",
+      "units": "330 Monochromes",
+      "priceNpr": 690,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": true
+    },
+    {
+      "id": "zzz-1090",
+      "game": "Zenless Zone Zero",
+      "slug": "zzz",
+      "region": "Global",
+      "title": "1090 Monochromes",
+      "units": "1090 Monochromes",
+      "priceNpr": 2050,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "zzz-2240",
+      "game": "Zenless Zone Zero",
+      "slug": "zzz",
+      "region": "Global",
+      "title": "2240 Monochromes",
+      "units": "2240 Monochromes",
+      "priceNpr": 4450,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "zzz-3880",
+      "game": "Zenless Zone Zero",
+      "slug": "zzz",
+      "region": "Global",
+      "title": "3880 Monochromes",
+      "units": "3880 Monochromes",
+      "priceNpr": 6750,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "zzz-8080",
+      "game": "Zenless Zone Zero",
+      "slug": "zzz",
+      "region": "Global",
+      "title": "8080 Monochromes",
+      "units": "8080 Monochromes",
+      "priceNpr": 13500,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "zzz-inter-knot",
+      "game": "Zenless Zone Zero",
+      "slug": "zzz",
+      "region": "Global",
+      "title": "Inter-Knot Membership",
+      "units": "Inter-Knot Membership",
+      "priceNpr": 680,
+      "fields": [
+        "uid",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": true
+    },
+    {
+      "id": "valorant-1000",
+      "game": "Valorant",
+      "slug": "valorant",
+      "region": "Nepal/India",
+      "title": "1000 VP",
+      "units": "1000 VP",
+      "priceNpr": 1700,
+      "fields": [
+        "riotId",
+        "tagline"
+      ],
+      "hot": true,
+      "category": "PC"
+    },
+    {
+      "id": "valorant-1520",
+      "game": "Valorant",
+      "slug": "valorant",
+      "region": "Nepal/India",
+      "title": "1520 VP",
+      "units": "1520 VP",
+      "priceNpr": 2550,
+      "fields": [
+        "riotId",
+        "tagline"
+      ],
+      "hot": false,
+      "category": "PC"
+    },
+    {
+      "id": "valorant-2050",
+      "game": "Valorant",
+      "slug": "valorant",
+      "region": "Nepal/India",
+      "title": "2050 VP",
+      "units": "2050 VP",
+      "priceNpr": 3400,
+      "fields": [
+        "riotId",
+        "tagline"
+      ],
+      "hot": false,
+      "category": "PC"
+    },
+    {
+      "id": "valorant-2575",
+      "game": "Valorant",
+      "slug": "valorant",
+      "region": "Nepal/India",
+      "title": "2575 VP",
+      "units": "2575 VP",
+      "priceNpr": 4250,
+      "fields": [
+        "riotId",
+        "tagline"
+      ],
+      "hot": false,
+      "category": "PC"
+    },
+    {
+      "id": "valorant-3650",
+      "game": "Valorant",
+      "slug": "valorant",
+      "region": "Nepal/India",
+      "title": "3650 VP",
+      "units": "3650 VP",
+      "priceNpr": 5950,
+      "fields": [
+        "riotId",
+        "tagline"
+      ],
+      "hot": false,
+      "category": "PC"
+    },
+    {
+      "id": "valorant-5350",
+      "game": "Valorant",
+      "slug": "valorant",
+      "region": "Nepal/India",
+      "title": "5350 VP",
+      "units": "5350 VP",
+      "priceNpr": 8500,
+      "fields": [
+        "riotId",
+        "tagline"
+      ],
+      "hot": false,
+      "category": "PC"
+    },
+    {
+      "id": "valorant-11000",
+      "game": "Valorant",
+      "slug": "valorant",
+      "region": "Nepal/India",
+      "title": "11000 VP",
+      "units": "11000 VP",
+      "priceNpr": 17000,
+      "fields": [
+        "riotId",
+        "tagline"
+      ],
+      "hot": false,
+      "category": "PC"
+    },
+    {
+      "id": "roblox-800",
+      "game": "Roblox",
+      "slug": "roblox",
+      "region": "Global",
+      "title": "800 Robux ($10)",
+      "units": "800 Robux ($10)",
+      "priceNpr": 1599,
+      "fields": [
+        "username"
+      ],
+      "category": "MOBILE",
+      "hot": true
+    },
+    {
+      "id": "roblox-1200",
+      "game": "Roblox",
+      "slug": "roblox",
+      "region": "Global",
+      "title": "1200 Robux ($15)",
+      "units": "1200 Robux ($15)",
+      "priceNpr": 2325,
+      "fields": [
+        "username"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "roblox-1700",
+      "game": "Roblox",
+      "slug": "roblox",
+      "region": "Global",
+      "title": "1700 Robux ($20)",
+      "units": "1700 Robux ($20)",
+      "priceNpr": 3100,
+      "fields": [
+        "username"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "roblox-3150",
+      "game": "Roblox",
+      "slug": "roblox",
+      "region": "Global",
+      "title": "3150 Robux ($35)",
+      "units": "3150 Robux ($35)",
+      "priceNpr": 5425,
+      "fields": [
+        "username"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "roblox-4500",
+      "game": "Roblox",
+      "slug": "roblox",
+      "region": "Global",
+      "title": "4500 Robux ($50)",
+      "units": "4500 Robux ($50)",
+      "priceNpr": 7750,
+      "fields": [
+        "username"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "roblox-10000",
+      "game": "Roblox",
+      "slug": "roblox",
+      "region": "Global",
+      "title": "10000 Robux ($100)",
+      "units": "10000 Robux ($100)",
+      "priceNpr": 15500,
+      "fields": [
+        "username"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "roblox-22500",
+      "game": "Roblox",
+      "slug": "roblox",
+      "region": "Global",
+      "title": "22500 Robux ($200)",
+      "units": "22500 Robux ($200)",
+      "priceNpr": 31000,
+      "fields": [
+        "username"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "steam-10",
+      "game": "Steam Wallet",
+      "slug": "steam",
+      "region": "Global account",
+      "title": "Steam Global $10",
+      "units": "$10 Wallet",
+      "priceNpr": 2352,
+      "fields": [
+        "email"
+      ],
+      "category": "PC",
+      "hot": true
+    },
+    {
+      "id": "steam-20",
+      "game": "Steam Wallet",
+      "slug": "steam",
+      "region": "Global account",
+      "title": "Steam Global $20",
+      "units": "$20 Wallet",
+      "priceNpr": 4703,
+      "fields": [
+        "email"
+      ],
+      "category": "PC",
+      "hot": false
+    },
+    {
+      "id": "steam-50",
+      "game": "Steam Wallet",
+      "slug": "steam",
+      "region": "Global account",
+      "title": "Steam Global $50",
+      "units": "$50 Wallet",
+      "priceNpr": 11645,
+      "fields": [
+        "email"
+      ],
+      "category": "PC",
+      "hot": false
+    },
+    {
+      "id": "codm-420",
+      "game": "Call of Duty Mobile",
+      "slug": "codm",
+      "region": "Global",
+      "title": "420 CP",
+      "units": "420 CP",
+      "priceNpr": 940,
+      "fields": [
+        "playerId",
+        "region"
+      ],
+      "category": "MOBILE",
+      "hot": true
+    },
+    {
+      "id": "codm-880",
+      "game": "Call of Duty Mobile",
+      "slug": "codm",
+      "region": "Global",
+      "title": "880 CP",
+      "units": "880 CP",
+      "priceNpr": 1820,
+      "fields": [
+        "playerId",
+        "region"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "codm-2400",
+      "game": "Call of Duty Mobile",
+      "slug": "codm",
+      "region": "Global",
+      "title": "2400 + 400 CP",
+      "units": "2400 + 400 CP",
+      "priceNpr": 4950,
+      "fields": [
+        "playerId",
+        "region"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "codm-5000",
+      "game": "Call of Duty Mobile",
+      "slug": "codm",
+      "region": "Global",
+      "title": "5000 + 1000 CP",
+      "units": "5000 + 1000 CP",
+      "priceNpr": 8700,
+      "fields": [
+        "playerId",
+        "region"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "codm-10800",
+      "game": "Call of Duty Mobile",
+      "slug": "codm",
+      "region": "Global",
+      "title": "10800 + 2800 CP",
+      "units": "10800 + 2800 CP",
+      "priceNpr": 18200,
+      "fields": [
+        "playerId",
+        "region"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "hok-16",
+      "game": "Honor of Kings",
+      "slug": "honor-of-kings",
+      "region": "Global",
+      "title": "16 Tokens",
+      "units": "16 Tokens",
+      "priceNpr": 52,
+      "fields": [
+        "playerId",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "hok-80",
+      "game": "Honor of Kings",
+      "slug": "honor-of-kings",
+      "region": "Global",
+      "title": "80 Tokens",
+      "units": "80 Tokens",
+      "priceNpr": 235,
+      "fields": [
+        "playerId",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": true
+    },
+    {
+      "id": "hok-240",
+      "game": "Honor of Kings",
+      "slug": "honor-of-kings",
+      "region": "Global",
+      "title": "240 Tokens",
+      "units": "240 Tokens",
+      "priceNpr": 711,
+      "fields": [
+        "playerId",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "hok-400",
+      "game": "Honor of Kings",
+      "slug": "honor-of-kings",
+      "region": "Global",
+      "title": "400 Tokens",
+      "units": "400 Tokens",
+      "priceNpr": 1186,
+      "fields": [
+        "playerId",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "hok-560",
+      "game": "Honor of Kings",
+      "slug": "honor-of-kings",
+      "region": "Global",
+      "title": "560 Tokens",
+      "units": "560 Tokens",
+      "priceNpr": 1661,
+      "fields": [
+        "playerId",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "hok-830",
+      "game": "Honor of Kings",
+      "slug": "honor-of-kings",
+      "region": "Global",
+      "title": "800 + 30 Tokens",
+      "units": "800 + 30 Tokens",
+      "priceNpr": 2374,
+      "fields": [
+        "playerId",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "hok-1245",
+      "game": "Honor of Kings",
+      "slug": "honor-of-kings",
+      "region": "Global",
+      "title": "1200 + 45 Tokens",
+      "units": "1200 + 45 Tokens",
+      "priceNpr": 3562,
+      "fields": [
+        "playerId",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "hok-2508",
+      "game": "Honor of Kings",
+      "slug": "honor-of-kings",
+      "region": "Global",
+      "title": "2400 + 108 Tokens",
+      "units": "2400 + 108 Tokens",
+      "priceNpr": 7126,
+      "fields": [
+        "playerId",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "hok-4180",
+      "game": "Honor of Kings",
+      "slug": "honor-of-kings",
+      "region": "Global",
+      "title": "4000 + 180 Tokens",
+      "units": "4000 + 180 Tokens",
+      "priceNpr": 11878,
+      "fields": [
+        "playerId",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "hok-8360",
+      "game": "Honor of Kings",
+      "slug": "honor-of-kings",
+      "region": "Global",
+      "title": "8000 + 360 Tokens",
+      "units": "8000 + 360 Tokens",
+      "priceNpr": 23758,
+      "fields": [
+        "playerId",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "hok-weekly",
+      "game": "Honor of Kings",
+      "slug": "honor-of-kings",
+      "region": "Global",
+      "title": "Weekly Card",
+      "units": "Weekly Card",
+      "priceNpr": 268,
+      "fields": [
+        "playerId",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": true
+    },
+    {
+      "id": "hok-weekly-plus",
+      "game": "Honor of Kings",
+      "slug": "honor-of-kings",
+      "region": "Global",
+      "title": "Weekly Card Plus",
+      "units": "Weekly Card Plus",
+      "priceNpr": 789,
+      "fields": [
+        "playerId",
+        "server"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "bloodstrike-300",
+      "game": "Blood Strike",
+      "slug": "blood-strike",
+      "region": "Global",
+      "title": "300 + 20 Gold",
+      "units": "300 + 20 Gold",
+      "priceNpr": 412,
+      "fields": [
+        "playerId",
+        "region"
+      ],
+      "category": "MOBILE",
+      "hot": true
+    },
+    {
+      "id": "bloodstrike-500",
+      "game": "Blood Strike",
+      "slug": "blood-strike",
+      "region": "Global",
+      "title": "500 + 40 Gold",
+      "units": "500 + 40 Gold",
+      "priceNpr": 686,
+      "fields": [
+        "playerId",
+        "region"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "bloodstrike-1000",
+      "game": "Blood Strike",
+      "slug": "blood-strike",
+      "region": "Global",
+      "title": "1000 + 100 Gold",
+      "units": "1000 + 100 Gold",
+      "priceNpr": 1371,
+      "fields": [
+        "playerId",
+        "region"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "bloodstrike-2000",
+      "game": "Blood Strike",
+      "slug": "blood-strike",
+      "region": "Global",
+      "title": "2000 + 200 Gold",
+      "units": "2000 + 200 Gold",
+      "priceNpr": 2742,
+      "fields": [
+        "playerId",
+        "region"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "bloodstrike-5000",
+      "game": "Blood Strike",
+      "slug": "blood-strike",
+      "region": "Global",
+      "title": "5000 + 500 Gold",
+      "units": "5000 + 500 Gold",
+      "priceNpr": 6855,
+      "fields": [
+        "playerId",
+        "region"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "brawl-30",
+      "game": "Brawl Stars",
+      "slug": "brawl-stars",
+      "region": "Nepal",
+      "title": "30 + 3 Gems",
+      "units": "30 + 3 Gems",
+      "priceNpr": 250,
+      "fields": [
+        "supercellEmail"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "brawl-80",
+      "game": "Brawl Stars",
+      "slug": "brawl-stars",
+      "region": "Nepal",
+      "title": "80 + 8 Gems",
+      "units": "80 + 8 Gems",
+      "priceNpr": 750,
+      "fields": [
+        "supercellEmail"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "brawl-360",
+      "game": "Brawl Stars",
+      "slug": "brawl-stars",
+      "region": "Nepal",
+      "title": "360 + 36 Gems",
+      "units": "360 + 36 Gems",
+      "priceNpr": 2850,
+      "fields": [
+        "supercellEmail"
+      ],
+      "category": "MOBILE",
+      "hot": true
+    },
+    {
+      "id": "brawl-950",
+      "game": "Brawl Stars",
+      "slug": "brawl-stars",
+      "region": "Nepal",
+      "title": "950 + 95 Gems",
+      "units": "950 + 95 Gems",
+      "priceNpr": 7500,
+      "fields": [
+        "supercellEmail"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "brawl-2000",
+      "game": "Brawl Stars",
+      "slug": "brawl-stars",
+      "region": "Nepal",
+      "title": "2000 + 200 Gems",
+      "units": "2000 + 200 Gems",
+      "priceNpr": 14500,
+      "fields": [
+        "supercellEmail"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    },
+    {
+      "id": "brawl-pass",
+      "game": "Brawl Stars",
+      "slug": "brawl-stars",
+      "region": "Nepal",
+      "title": "Brawl Pass",
+      "units": "Brawl Pass",
+      "priceNpr": 999,
+      "fields": [
+        "supercellEmail"
+      ],
+      "category": "MOBILE",
+      "hot": true
+    },
+    {
+      "id": "brawl-pass-plus",
+      "game": "Brawl Stars",
+      "slug": "brawl-stars",
+      "region": "Nepal",
+      "title": "Brawl Pass Plus",
+      "units": "Brawl Pass Plus",
+      "priceNpr": 1499,
+      "fields": [
+        "supercellEmail"
+      ],
+      "category": "MOBILE",
+      "hot": false
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b1117">
+  <meta name="description" content="NEXA TOPUP — fast game credits, vouchers and digital products with local and global payment options.">
+  <title>NEXA TOPUP — Fast Game Credits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>try{const t=localStorage.getItem('nexa-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch{document.documentElement.dataset.theme='dark'}</script>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="NEXA TOPUP home">
+        <span class="brand-mark"><span>N</span></span>
+        <span class="brand-copy"><strong id="brandName">NEXA TOPUP</strong><small>FAST • SIMPLE • GLOBAL</small></span>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="#games">Games</a>
+        <a href="#how">How it works</a>
+        <a href="#support">Support</a>
+      </nav>
+      <div class="header-actions">
+        <label class="select-pill"><span class="control-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></span><select id="country" aria-label="Country"></select></label>
+        <label class="select-pill"><span>¤</span><select id="currency" aria-label="Currency"></select></label>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch color theme" title="Switch color theme"><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 14.1A8.5 8.5 0 0 1 9.9 3.2 8.6 8.6 0 1 0 20.8 14.1Z"/></svg></button>
+        <a class="header-track" href="#track">Track order</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="announce"><span class="announce-live"></span><strong>24/7 ordering</strong><span>Fast delivery • No game password • Local payment ready</span><a href="#games">Browse games →</a></div>
+
+  <main id="app">
+    <section class="hero-shell">
+      <div class="hero-copy">
+        <div class="eyebrow-pill"><span>✦</span> MADE FOR GAMERS IN NEPAL</div>
+        <h1>Everything you need<br><span>before the next match.</span></h1>
+        <p>Explore game top-up packages and preview a simpler way to shop. Secure checkout and delivery are coming soon.</p>
+        <div class="hero-ctas"><a class="btn btn-primary" href="#games">Explore games <span>↗</span></a><a class="btn btn-secondary" href="#how">How it works</a></div>
+        <div class="hero-trust"><span>✓ No passwords</span><span>✓ Instant-ready catalog</span><span>✓ 24/7 support</span></div>
+        <div class="demo-banner" id="demoNote" hidden><span>PREVIEW</span> Purchases are not live. No payments are collected and no game credits are delivered.</div>
+      </div>
+
+      <div class="hero-preview">
+        <div class="preview-glow"></div>
+        <div class="preview-window">
+          <div class="preview-bar"><div class="traffic"><i></i><i></i><i></i></div><span>NEXA / GAME STORE</span><b>CATALOG PREVIEW</b></div>
+          <div class="preview-title"><div><span class="mini-eyebrow">SELECT A GAME</span><h2>Explore the catalog.</h2></div><span class="preview-arrow">↗</span></div>
+          <div class="preview-games" id="previewGames"></div>
+          <div class="preview-foot"><span><i></i> Preview only</span><span>8 currencies planned</span><span>Coming soon</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-row">
+      <div><strong id="gameCount">—</strong><span>games & products</span></div>
+      <div><strong>8</strong><span>currencies planned</span></div>
+      <div><strong>—</strong><span>purchases not live</span></div>
+      <div><strong>1</strong><span>catalog to explore</span></div>
+    </section>
+
+    <section class="content-section" id="games">
+      <div class="section-heading">
+        <div><span class="section-kicker">GAME LIBRARY</span><h2>Pick a game.<br><span>Then pick a package.</span></h2><p>Each game has its own dedicated page, instructions, regions and package catalog.</p></div>
+        <div class="game-search"><span>⌕</span><input id="search" placeholder="Search games…" autocomplete="off"></div>
+      </div>
+      <div class="category-tabs" id="filters"></div>
+      <div class="game-card-grid" id="gameGrid"></div>
+    </section>
+
+    <section class="content-section how-section" id="how">
+      <div class="section-heading compact"><div><span class="section-kicker">HOW IT WORKS</span><h2>Fast by design.</h2></div></div>
+      <div class="steps-grid">
+        <article class="step-card"><span>01</span><div class="step-symbol"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8h10a4 4 0 0 1 3.8 2.8l1 3.5a2 2 0 0 1-3.1 2.2L16 14H8l-2.7 2.5a2 2 0 0 1-3.1-2.2l1-3.5A4 4 0 0 1 7 8Z"/><path d="M8 10v4m-2-2h4m7-1h.01M18 13h.01"/></svg></div><h3>Choose your game</h3><p>Open the game page and select the exact top-up, pass, voucher or currency package.</p></article>
+        <article class="step-card"><span>02</span><div class="step-symbol"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0M19 8h2m-1-1v2"/></svg></div><h3>Enter player details</h3><p>Only the account information that the selected product actually needs — never your game password.</p></article>
+        <article class="step-card"><span>03</span><div class="step-symbol"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 10-13h-7l1-7Z"/></svg></div><h3>Checkout coming soon</h3><p>Verified local payment options and authorized game-credit delivery will be added before purchases open.</p></article>
+      </div>
+      <div class="payments-strip"><span>PAYMENT OPTIONS PLANNED</span><b>eSewa</b><b>Khalti</b><b>Fonepay</b><b>UPI</b><b>Cards</b></div>
+    </section>
+
+    <section class="content-section track-section" id="track">
+      <div class="track-copy"><span class="section-kicker">ORDER TRACKING</span><h2>Every order,<br><span>easy to follow.</span></h2><p>Order tracking will be available once verified checkout goes live.</p></div>
+      <div class="track-panel tracking-preview"><div class="panel-label"><span>ORDER TRACKING</span><em>COMING SOON</em></div><p>There are no live orders in this preview.</p></div>
+    </section>
+
+    <section class="content-section support-section" id="support">
+      <div class="support-head"><div><span class="section-kicker">SUPPORT</span><h2>Simple answers.<br><span>Real clarity.</span></h2></div><div class="support-badge">24/7 ORDERING<br><small>Support channel can be configured in production.</small></div></div>
+      <div class="faq-grid">
+        <article><span>01</span><h3>Do you need my game password?</h3><p>No. Product pages only request the player details required by the game's top-up system.</p></article>
+        <article><span>02</span><h3>Can pricing be local to each country?</h3><p>Yes. The platform has country, currency and provider layers so prices and payment methods can be configured per market.</p></article>
+        <article><span>03</span><h3>Can one game have multiple regions?</h3><p>Yes. Regions and SKUs live inside the game page, so customers see the correct product catalog instead of a mixed list.</p></article>
+        <article><span>04</span><h3>Is this build live?</h3><p>No. Real gateway credentials and authorized supplier APIs must be connected before production fulfillment is enabled.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top"><div class="footer-brand"><span class="brand-mark small"><span>N</span></span><div><strong>NEXA TOPUP</strong><p>Fast game credits. Local payment. Global reach.</p></div></div><div class="footer-links"><a href="#games">Games</a><a href="#how">How it works</a><a href="#track">Track</a><a href="#support">Support</a></div></div>
+    <div class="footer-bottom"><span>© <span id="year"></span> NEXA TOPUP</span><span>Privacy • Terms • Refunds</span></div>
+  </footer>
+
+  <div class="modal" id="modal" aria-hidden="true"><div class="modal-backdrop" onclick="closeModal()"></div><div class="modal-panel"><button class="close" onclick="closeModal()" aria-label="Close">×</button><div id="modalBody"></div></div></div>
+  <script src="/app.js"></script>
+</body>
+</html>
