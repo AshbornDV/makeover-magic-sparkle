@@ -87,7 +87,7 @@ function Storefront() {
     [filter, query],
   );
 
-  const money = (value: number) => `${symbols[currency]}${(value * rates[currency]).toLocaleString(undefined, { maximumFractionDigits: currency === "NPR" ? 0 : 2 })}`;
+  const money = (value: number) => `${symbols[currency] ?? ""}${(value * (rates[currency] ?? 1)).toLocaleString(undefined, { maximumFractionDigits: currency === "NPR" ? 0 : 2 })}`;
   const openGame = (game: Game) => { setSelected(game); setCheckoutStep("details"); };
   const closeModal = () => setSelected(null);
 
@@ -166,7 +166,7 @@ function Storefront() {
                 <div><h2 className="font-display text-xl font-semibold">Mobile Legends</h2><p className="mt-1 text-xs text-muted-foreground">86 Diamonds · Nepal</p></div>
                 <div className="text-right"><strong className="font-display text-2xl text-primary">{money(210)}</strong><span className="block text-xs text-muted-foreground">ready now</span></div>
               </div>
-              <Button className="mt-5 w-full" onClick={() => openGame(games[0])}>Choose package <ArrowRight className="size-4" /></Button>
+              <Button className="mt-5 w-full" onClick={() => { const featuredGame = games[0]; if (featuredGame) openGame(featuredGame); }}>Choose package <ArrowRight className="size-4" /></Button>
             </article>
           </div>
         </section>
