@@ -471,3 +471,15 @@ html[data-theme="light"] .package-icon--bundle-premium{background:linear-gradien
 html[data-theme="light"] .package-icon--bundle-standard{background:linear-gradient(145deg,#f5e9f0,#faf5f8)!important;border-color:#e8d5e0!important}
 html[data-theme="light"] .package-icon--first-recharge{background:linear-gradient(145deg,#dff3ed,#f1f8f5)!important;border-color:#b9ded2!important}
 @media(prefers-reduced-motion:reduce){.currency-chip img{transition:none}}
+
+/* Mobile Legends recharge artwork: denomination-specific crops stay square and readable. */
+.package-tile .package-icon{width:58px;height:58px;flex:none;border-radius:15px;padding:4px}
+.package-row.package-tile{grid-template-columns:58px minmax(0,1fr) auto;gap:13px}
+.package-icon--product{position:relative;overflow:hidden!important;border-radius:15px!important;padding:3px!important;background:#1c2930!important;border-color:rgba(169,211,194,.32)!important}
+.package-icon--product>img:first-child{width:100%;height:100%;max-width:none;max-height:none;object-fit:contain;border-radius:11px!important}
+.package-icon--product>img.package-icon-fallback{inset:6px;width:calc(100% - 12px);height:calc(100% - 12px);object-fit:contain;border-radius:0!important}
+.package-count--pass{right:-4px;top:-4px;bottom:auto;padding:4px 5px;border-radius:7px;background:#d5ef6a;color:#182011;font-size:8px;box-shadow:0 2px 8px rgba(0,0,0,.28)}
+html[data-theme="light"] .package-icon--product{background:#eaf0e9!important;border-color:#d0ddd4!important}
+html[data-theme="light"] .package-count--pass{background:#628834;color:#fff}
+@media(max-width:760px){.package-row.package-tile{grid-template-columns:54px minmax(0,1fr) auto}.package-tile .package-icon{width:54px;height:54px}}
+@media(max-width:580px){.package-row.package-tile{grid-template-columns:48px minmax(0,1fr) auto;gap:10px}.package-tile .package-icon{width:48px;height:48px;border-radius:13px}.package-icon--product>img:first-child{border-radius:9px!important}.package-price{gap:8px}.package-price button{padding:8px 9px}}

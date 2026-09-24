@@ -511,12 +511,60 @@
       "region": "Nepal",
       "title": "Weekly Diamond Pass",
       "units": "Weekly Diamond Pass",
-      "priceNpr": 240,
+      "priceNpr": 260,
       "fields": [
         "userId",
         "zoneId"
       ],
       "hot": true,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-weekly-pass-2x",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "2× Weekly Diamond Pass",
+      "units": "2× Weekly Diamond Pass",
+      "priceNpr": 520,
+      "fields": ["userId", "zoneId"],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-weekly-pass-3x",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "3× Weekly Diamond Pass",
+      "units": "3× Weekly Diamond Pass",
+      "priceNpr": 780,
+      "fields": ["userId", "zoneId"],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-weekly-pass-4x",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "4× Weekly Diamond Pass",
+      "units": "4× Weekly Diamond Pass",
+      "priceNpr": 1040,
+      "fields": ["userId", "zoneId"],
+      "hot": false,
+      "category": "MOBILE"
+    },
+    {
+      "id": "mlbb-weekly-pass-5x",
+      "game": "Mobile Legends",
+      "slug": "mobile-legends",
+      "region": "Nepal",
+      "title": "5× Weekly Diamond Pass",
+      "units": "5× Weekly Diamond Pass",
+      "priceNpr": 1299,
+      "fields": ["userId", "zoneId"],
+      "hot": false,
       "category": "MOBILE"
     },
     {

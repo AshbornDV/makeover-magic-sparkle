@@ -17,3 +17,15 @@ Product thumbnails are bundled locally so the catalog does not make third-party 
 | Brawl Stars Pass / Pass Plus | `brawl-pass-plus.jpg` | [BuyMMOG Brawl Pass Plus](https://www.buymmog.com/brawl-stars-gems-pass-top-ups) |
 
 Other packages use the local per-game currency artwork in `../currency/`. Quantity chips and layered gem marks communicate denomination without using unrelated pass art.
+
+## Mobile Legends in-game recharge artwork
+
+The denomination tiles below are crops from the official Mobile Legends recharge-menu screenshot supplied by the site owner. Each crop keeps the corresponding gem pile or chest artwork, while the package name and price remain selectable text in the storefront.
+
+| Recharge tier | Local asset |
+| --- | --- |
+| Small diamond tiers | `ml-recharge-50.jpg` |
+| Mid diamond tiers | `ml-recharge-150.jpg`, `ml-recharge-250.jpg`, `ml-recharge-500.jpg` |
+| Large diamond tiers | `ml-recharge-1000.jpg`, `ml-recharge-1500.jpg`, `ml-recharge-2000.jpg`, `ml-recharge-2500.jpg` |
+
+Other games use the local, game-specific currency and pass illustrations already listed above and in `../currency/`. The renderer selects the art by game and product kind so unrelated currencies are never shown as generic placeholders.

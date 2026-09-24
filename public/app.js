@@ -162,7 +162,7 @@ function renderRegion(region, arr) {
   const ordered = [...arr].sort((a,b)=>a.displayPrice-b.displayPrice);
   const popular = ordered.filter(p=>p.hot);
   const orderedAll = popular.length ? [...popular,...ordered.filter(p=>!popular.includes(p))] : ordered;
-  const tile = p => `<article class="package-row package-tile ${p.hot?'hot':''}">${renderPackageIcon(p)}<div class="package-copy"><span>${p.hot?'POPULAR':'PACKAGE'}</span><h4>${p.title}</h4><p>${p.region && p.region!=='Global'?p.region:(p.region==='Global' && p.game==='Steam Wallet'?'Global · account region required':p.game==='Brawl Stars'?'In-game store offer · Supercell ID required':'Instant top-up')}</p></div><div class="package-price"><strong>${money(p.displayPrice,currency)}</strong><button aria-label="Buy ${p.title}" onclick="openBuy('${p.id}')">Choose <span>↗</span></button></div></article>`;
+  const tile = p => `<article class="package-row package-tile ${p.hot?'hot':''}">${renderPackageIcon(p)}<div class="package-copy"><span>${p.hot?'POPULAR':packageLabel(p)}</span><h4>${p.title}</h4><p>${p.region && p.region!=='Global'?p.region:(p.region==='Global' && p.game==='Steam Wallet'?'Global · account region required':p.game==='Brawl Stars'?'In-game store offer · Supercell ID required':'Instant top-up')}</p></div><div class="package-price"><strong>${money(p.displayPrice,currency)}</strong><button aria-label="Buy ${p.title}" onclick="openBuy('${p.id}')">Choose <span>↗</span></button></div></article>`;
   return `<section class="region-block"><div class="region-title"><div><span class="section-kicker">REGION</span><h3>${region}</h3></div><span>${arr.length} package${arr.length===1?'':'s'}</span></div><div class="package-list featured-packages package-catalog-grid">${orderedAll.map(tile).join('')}</div></section>`;
 }
 function currencyIconAsset(p) {
@@ -183,6 +183,13 @@ function currencyIconAsset(p) {
   };
   return icons[p.game] || '';
 }
+function packageLabel(p) {
+  const title = `${p.title||''} ${p.units||''}`.toLowerCase();
+  if (/weekly.*pass|weekly diamond pass|weekly pass/.test(title)) return 'WEEKLY PASS';
+  if (/twilight|monthly.*pass|monthly card|welkin|express supply|membership/.test(title)) return 'PASS';
+  if (/bundle|\bpack\b/.test(title)) return 'BUNDLE';
+  return 'CURRENCY';
+}
 function packageImageAsset(p) {
   // Product artwork is kept local: a pass gets its own art; denomination packs
   // keep the game's real currency symbol and show the quantity beside it.
@@ -201,6 +208,15 @@ function packageImageAsset(p) {
     'brawl-pass':'/assets/packages/brawl-pass-plus.jpg',
     'brawl-pass-plus':'/assets/packages/brawl-pass-plus.jpg'
   };
+  if (p.game === 'Mobile Legends') {
+    const title = `${p.title||''} ${p.units||''}`;
+    if (/weekly.*pass/i.test(title)) return '/assets/packages/ml-weekly-pass.png';
+    if (/diamonds?/i.test(title)) {
+      const quantity = Number((p.units||p.title||'').replace(/,/g,'').match(/\d+/)?.[0] || 0);
+      const tier = quantity <= 86 ? 50 : quantity <= 172 ? 150 : quantity <= 344 ? 250 : quantity <= 706 ? 500 : quantity <= 1412 ? 1000 : quantity <= 2195 ? 1500 : quantity <= 3688 ? 2000 : 2500;
+      return `/assets/packages/ml-recharge-${tier}.jpg`;
+    }
+  }
   return productArt[p.id] || '';
 }
 function renderPackageIcon(p) {
@@ -209,7 +225,10 @@ function renderPackageIcon(p) {
   const productArt = packageImageAsset(p);
   if (productArt) {
     const fallback = currencyIconAsset(p) || '';
-    return `<div class="${classes} package-icon--product" aria-hidden="true"><img src="${productArt}" alt="" loading="lazy" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><img class="package-icon-fallback" src="${fallback}" alt="" hidden></div>`;
+    const match = `${p.title||''} ${p.units||''}`.match(/([1-5])\s*[×x]/i);
+    const isWeeklyPass = /weekly.*pass/i.test(`${p.title||''} ${p.units||''}`);
+    const multiplier = isWeeklyPass ? `<span class="package-count package-count--pass">${match?.[1]||'1'}×</span>` : '';
+    return `<div class="${classes} package-icon--product" aria-hidden="true"><img src="${productArt}" alt="" loading="lazy" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><img class="package-icon-fallback" src="${fallback}" alt="" hidden>${multiplier}</div>`;
   }
   if (type !== 'currency') return `<div class="${classes}" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false">${packageArtwork(p)}</svg></div>`;
   const asset = currencyIconAsset(p);
