@@ -483,3 +483,41 @@ html[data-theme="light"] .package-icon--product{background:#eaf0e9!important;bor
 html[data-theme="light"] .package-count--pass{background:#628834;color:#fff}
 @media(max-width:760px){.package-row.package-tile{grid-template-columns:54px minmax(0,1fr) auto}.package-tile .package-icon{width:54px;height:54px}}
 @media(max-width:580px){.package-row.package-tile{grid-template-columns:48px minmax(0,1fr) auto;gap:10px}.package-tile .package-icon{width:48px;height:48px;border-radius:13px}.package-icon--product>img:first-child{border-radius:9px!important}.package-price{gap:8px}.package-price button{padding:8px 9px}}
+
+/* Every currency SKU uses one recognizable game emblem; the count chip carries the tier. */
+.package-icon--native-art{overflow:hidden!important;border-radius:15px!important;background:linear-gradient(145deg,#1a2932,#111922)!important;border-color:rgba(190,211,205,.2)!important}
+.package-icon--native-art .currency-art{display:block;width:42px;height:42px;max-width:none;max-height:none;object-fit:contain;filter:drop-shadow(0 3px 5px rgba(0,0,0,.2))}
+.package-icon--native-art .currency-art-fallback{width:38px;height:38px;max-width:none;max-height:none;filter:drop-shadow(0 3px 5px rgba(0,0,0,.2))}
+.package-icon--native-art .package-count{right:-1px;bottom:-1px;max-width:39px;padding:3px 4px;border-radius:7px;background:rgba(11,17,25,.94);border-color:rgba(255,255,255,.2);color:#f1f6f4;font-size:8px;line-height:1.05;box-shadow:0 2px 5px rgba(0,0,0,.18)}
+.package-icon--tier-2{background:linear-gradient(145deg,#202e37,#131c25)!important}
+.package-icon--tier-3{background:linear-gradient(145deg,#27323a,#141c25)!important}
+.package-icon--tier-4{background:linear-gradient(145deg,#302f39,#171d27)!important}
+.package-icon--game-mobile-legends{border-color:rgba(100,219,244,.42)!important;background:linear-gradient(145deg,#153b48,#172432)!important}
+.package-icon--game-free-fire{border-color:rgba(87,199,255,.38)!important;background:linear-gradient(145deg,#163955,#172534)!important}
+.package-icon--game-pubg-mobile{border-color:rgba(242,194,101,.4)!important;background:linear-gradient(145deg,#45351f,#231f1a)!important}
+.package-icon--game-genshin-impact{border-color:rgba(132,212,238,.38)!important;background:linear-gradient(145deg,#1c4355,#1a2938)!important}
+.package-icon--game-honkai-star-rail{border-color:rgba(191,154,255,.4)!important;background:linear-gradient(145deg,#352a50,#211d32)!important}
+.package-icon--game-zenless-zone-zero{border-color:rgba(77,229,228,.38)!important;background:linear-gradient(145deg,#183c43,#17252e)!important}
+.package-icon--game-valorant{border-color:rgba(255,102,119,.35)!important;background:linear-gradient(145deg,#482a33,#231e29)!important}
+.package-icon--game-roblox{border-color:rgba(238,238,242,.24)!important;background:linear-gradient(145deg,#30343b,#1b2028)!important}
+.package-icon--game-steam-wallet{border-color:rgba(111,160,216,.35)!important;background:linear-gradient(145deg,#203954,#192631)!important}
+.package-icon--game-call-of-duty-mobile{border-color:rgba(242,197,97,.38)!important;background:linear-gradient(145deg,#41341f,#221f1a)!important}
+.package-icon--game-honor-of-kings{border-color:rgba(107,182,255,.4)!important;background:linear-gradient(145deg,#1d3658,#1b2639)!important}
+.package-icon--game-honor-of-kings .currency-art{transform:scale(1.8);object-fit:cover}
+.package-icon--game-blood-strike{border-color:rgba(248,192,81,.38)!important;background:linear-gradient(145deg,#44321b,#221e18)!important}
+.package-icon--game-brawl-stars{border-color:rgba(191,142,255,.38)!important;background:linear-gradient(145deg,#352748,#221e30)!important}
+html[data-theme="light"] .package-icon--native-art{background:linear-gradient(145deg,#f5f8f6,#e7eeea)!important;border-color:#d5dfd9!important}
+html[data-theme="light"] .package-icon--native-art .package-count{background:rgba(43,61,52,.92);color:#fff;border-color:rgba(255,255,255,.72)}
+html[data-theme="light"] .package-icon--game-mobile-legends{background:linear-gradient(145deg,#def2f3,#eef5f1)!important}
+html[data-theme="light"] .package-icon--game-free-fire{background:linear-gradient(145deg,#e1f0f8,#eef4f5)!important}
+html[data-theme="light"] .package-icon--game-pubg-mobile{background:linear-gradient(145deg,#f5eddc,#faf6ee)!important}
+html[data-theme="light"] .package-icon--game-genshin-impact{background:linear-gradient(145deg,#e2f1f4,#f0f6f3)!important}
+html[data-theme="light"] .package-icon--game-honkai-star-rail{background:linear-gradient(145deg,#eee8f6,#f5f2f8)!important}
+html[data-theme="light"] .package-icon--game-zenless-zone-zero{background:linear-gradient(145deg,#e1f1ef,#f0f6f3)!important}
+html[data-theme="light"] .package-icon--game-valorant{background:linear-gradient(145deg,#f6e8e8,#f8f3f1)!important}
+html[data-theme="light"] .package-icon--game-roblox{background:linear-gradient(145deg,#e9ecef,#f4f6f5)!important}
+html[data-theme="light"] .package-icon--game-steam-wallet{background:linear-gradient(145deg,#e5eef7,#f2f5f6)!important}
+html[data-theme="light"] .package-icon--game-call-of-duty-mobile{background:linear-gradient(145deg,#f4ecd9,#f8f5ee)!important}
+html[data-theme="light"] .package-icon--game-honor-of-kings{background:linear-gradient(145deg,#e4edf7,#f2f5f7)!important}
+html[data-theme="light"] .package-icon--game-blood-strike{background:linear-gradient(145deg,#f4ecd8,#f8f5ee)!important}
+html[data-theme="light"] .package-icon--game-brawl-stars{background:linear-gradient(145deg,#efe8f6,#f6f3f8)!important}

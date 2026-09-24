@@ -206,7 +206,10 @@ function packageImageAsset(p) {
     'ff-weekly':'/assets/packages/free-fire-weekly-membership.webp',
     'ff-monthly':'/assets/packages/free-fire-monthly-membership.png',
     'brawl-pass':'/assets/packages/brawl-pass-plus.jpg',
-    'brawl-pass-plus':'/assets/packages/brawl-pass-plus.jpg'
+    'brawl-pass-plus':'/assets/packages/brawl-pass-plus.jpg',
+    'pubg-prime':'/assets/currency/pubg-uc.png',
+    'pubg-prime-plus':'/assets/currency/pubg-uc.png',
+    'pubg-prime-combo':'/assets/currency/pubg-uc.png'
   };
   if (p.game === 'Mobile Legends') {
     const title = `${p.title||''} ${p.units||''}`;
@@ -221,7 +224,8 @@ function packageImageAsset(p) {
 }
 function renderPackageIcon(p) {
   const type = packageArtType(p);
-  const classes = `package-icon package-icon--${packageKind(p)} package-icon--${type}`;
+  const gameKey = String(p.slug || p.game || 'other').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  const classes = `package-icon package-icon--${packageKind(p)} package-icon--${type} package-icon--game-${gameKey}`;
   const productArt = packageImageAsset(p);
   if (productArt) {
     const fallback = currencyIconAsset(p) || '';
@@ -230,14 +234,13 @@ function renderPackageIcon(p) {
     const multiplier = isWeeklyPass ? `<span class="package-count package-count--pass">${match?.[1]||'1'}×</span>` : '';
     return `<div class="${classes} package-icon--product" aria-hidden="true"><img src="${productArt}" alt="" loading="lazy" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><img class="package-icon-fallback" src="${fallback}" alt="" hidden>${multiplier}</div>`;
   }
-  if (type !== 'currency') return `<div class="${classes}" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false">${packageArtwork(p)}</svg></div>`;
   const asset = currencyIconAsset(p);
   const amount = packageQuantity(p);
+  if (type !== 'currency' && !['wallet'].includes(packageKind(p))) return `<div class="${classes}" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false">${packageArtwork(p)}</svg></div>`;
+  if (asset) return `<div class="${classes} package-icon--native-art package-icon--tier-${amount.stack}" aria-hidden="true"><img class="currency-art" src="${asset}" alt="" loading="lazy" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><svg class="currency-art-fallback" viewBox="0 0 48 48" focusable="false" hidden>${packageArtwork(p)}</svg><span class="package-count">${amount.label}</span></div>`;
+  if (type !== 'currency') return `<div class="${classes}" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false">${packageArtwork(p)}</svg></div>`;
   const fallback = `<svg class="currency-fallback" viewBox="0 0 48 48" focusable="false" hidden>${packageArtwork(p)}</svg>`;
-  const coins = asset
-    ? Array.from({length:amount.stack},()=>`<span class="currency-chip"><img src="${asset}" alt="" loading="lazy" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false">${fallback}</span>`).join('')
-    : `<span class="currency-chip">${fallback.replace(' hidden','')}</span>`;
-  return `<div class="${classes}" aria-hidden="true"><span class="currency-stack currency-stack--${amount.stack}">${coins}</span><span class="package-count">${amount.label}</span></div>`;
+  return `<div class="${classes} package-icon--native-art package-icon--tier-${amount.stack}" aria-hidden="true"><span class="currency-fallback-wrap">${fallback.replace(' hidden','')}</span><span class="package-count">${amount.label}</span></div>`;
 }
 function packageArtType(p) {
   const title = `${p.title||''} ${p.units||''}`.toLowerCase();
@@ -254,7 +257,9 @@ function packageArtType(p) {
   return 'currency';
 }
 function packageQuantity(p) {
-  const values = [...String(p.units||p.title||'').matchAll(/[\d,]+/g)].map(m=>Number(m[0].replace(/,/g,''))).filter(Number.isFinite);
+  const source = String(p.units||p.title||'');
+  const rawValues = [...source.matchAll(/[\d,]+/g)].map(m=>Number(m[0].replace(/,/g,''))).filter(Number.isFinite);
+  const values = p.game === 'Roblox' ? rawValues.slice(0,1) : rawValues;
   const amount = values.reduce((sum,n)=>sum+n,0);
   const short = n => n >= 10000 ? `${(n/1000).toFixed(0)}k` : n >= 1000 ? `${(n/1000).toFixed(n%1000?1:0)}k` : String(n);
   const label = values.length>1 ? `${short(values[0])}+${short(values[1])}` : values.length ? short(values[0]) : 'SET';
