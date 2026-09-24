@@ -1,6 +1,6 @@
 # Game icon assets
 
-The catalog icons are locally bundled 512 × 512 app-store artwork so the game grid and checkout work without depending on a runtime image host. Images are displayed in the site’s shared rounded, bordered icon frame.
+The catalog icons are locally bundled 512 × 512 app-store artwork so the game grid and checkout work without depending on a runtime image host. Images are displayed in the site’s shared rounded, bordered icon frame; VALORANT uses a wordmark on a contrasting red surface.
 
 | Asset | Game | Source |
 | --- | --- | --- |
@@ -10,7 +10,7 @@ The catalog icons are locally bundled 512 × 512 app-store artwork so the game g
 | `genshin-impact.jpg` | Genshin Impact | [Apple App Store](https://apps.apple.com/us/app/genshin-impact/id1517783697) |
 | `honkai-star-rail.jpg` | Honkai: Star Rail | [Apple App Store](https://apps.apple.com/us/app/honkai-star-rail/id1599719154) |
 | `zenless-zone-zero.jpg` | Zenless Zone Zero | [Apple App Store](https://apps.apple.com/us/app/zenless-zone-zero/id1606356401) |
-| `valorant.jpg` | VALORANT | [Apple app icon image](https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/c5/89/b4/c589b472-7bae-b50d-2ed6-e45fce6db52b/AppIcon-1x_U007emarketing-0-8-0-85-220-0.png/512x512bb.jpg) |
+| `valorant-wordmark.svg` | VALORANT | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Valorant_logo.svg), sourced from Riot Games’ [official media library](https://playvalorant.com/en-us/media/) |
 | `roblox.jpg` | Roblox | [Apple App Store](https://apps.apple.com/us/app/roblox/id431946152) |
 | `steam.jpg` | Steam Wallet | [Apple App Store — Steam Mobile](https://apps.apple.com/us/app/steam-mobile/id495369748) |
 | `call-of-duty-mobile.jpg` | Call of Duty: Mobile | [Apple App Store](https://apps.apple.com/us/app/call-of-duty-mobile/id1287282214) |

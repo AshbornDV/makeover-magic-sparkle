@@ -33,7 +33,7 @@ const gameMeta = {
   'Genshin Impact': { slug:'genshin', publisher:'HOYOVERSE', subtitle:'Genesis Crystals & character bundles', tone:'rose', image:'/assets/games/genshin-impact.jpg' },
   'Honkai: Star Rail': { slug:'honkai-star-rail', publisher:'HOYOVERSE', subtitle:'Oneiric Shards & battle passes', tone:'blue', image:'/assets/games/honkai-star-rail.jpg' },
   'Zenless Zone Zero': { slug:'zzz', publisher:'HOYOVERSE', subtitle:'Monochromes, memberships & packs', tone:'violet', image:'/assets/games/zenless-zone-zero.jpg' },
-  'Valorant': { slug:'valorant', publisher:'RIOT GAMES', subtitle:'VP for supported regions', tone:'red', image:'/assets/games/valorant.jpg' },
+  'Valorant': { slug:'valorant', publisher:'RIOT GAMES', subtitle:'VP for supported regions', tone:'red', image:'/assets/games/valorant-wordmark.svg', imageType:'wordmark' },
   'Roblox': { slug:'roblox', publisher:'ROBLOX', subtitle:'Robux and digital offers', tone:'pink', image:'/assets/games/roblox.jpg' },
   'Steam Wallet': { slug:'steam', publisher:'STEAM', subtitle:'Wallet credit for supported regions', tone:'blue', image:'/assets/games/steam.jpg' },
   'Call of Duty Mobile': { slug:'codm', publisher:'ACTIVISION', subtitle:'CP for supported regions', tone:'green', image:'/assets/games/call-of-duty-mobile.jpg' },
@@ -76,7 +76,7 @@ async function refreshPage() {
 function renderPreviewGames(games) {
   $('#previewGames').innerHTML = games.slice(0,4).map(g => {
     const m = getMeta(g);
-    return `<button class="preview-game" onclick="openGame('${m.slug}')"><img src="${m.image}" alt="${g}" onerror="this.src=fallbackImage('${g}')"><span>${g}</span><b>↗</b></button>`;
+    return `<button class="preview-game ${m.imageType==='wordmark'?'wordmark-frame':''}" onclick="openGame('${m.slug}')"><img class="${m.imageType==='wordmark'?'wordmark-icon':''}" src="${m.image}" alt="${g}" onerror="this.src=fallbackImage('${g}')"><span>${g}</span><b>↗</b></button>`;
   }).join('');
 }
 
@@ -111,7 +111,7 @@ function renderGameCard(game) {
   const count = products.filter(p=>p.game===game).length;
   const regions = [...new Set(products.filter(p=>p.game===game).map(p=>p.region))].filter(Boolean);
   return `<article class="game-card" role="button" aria-label="Browse ${game} packages" onclick="openGame('${meta.slug}')" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGame('${meta.slug}')}">
-    <div class="game-card-image tone-${meta.tone}"><img src="${meta.image}" alt="${game} icon" loading="lazy" onerror="this.src=fallbackImage('${game}')"><span class="game-card-shade"></span><span class="game-card-arrow">↗</span></div>
+    <div class="game-card-image tone-${meta.tone} ${meta.imageType==='wordmark'?'wordmark-frame':''}"><img class="${meta.imageType==='wordmark'?'wordmark-icon':''}" src="${meta.image}" alt="${game} ${meta.imageType==='wordmark'?'wordmark':'icon'}" loading="lazy" decoding="async" onerror="this.src=fallbackImage('${game}')"><span class="game-card-shade"></span><span class="game-card-arrow">↗</span></div>
     <div class="game-card-body"><div><span class="game-publisher">${meta.publisher}</span><h3>${game}</h3><p>${meta.subtitle}</p></div><div class="game-card-foot"><span>${count} package${count===1?'':'s'}</span><span>${regions.slice(0,2).join(' • ') || 'Global'} <b>→</b></span></div></div>
   </article>`;
 }
@@ -136,12 +136,12 @@ function renderGamePage(slug) {
   $('#app').innerHTML = `<section class="game-page">
     <div class="game-page-hero tone-${meta.tone}">
       <button class="back-link" onclick="goHome()">← All games</button>
-      <div class="game-page-hero-main"><div class="large-game-icon"><img src="${meta.image}" alt="${game}" onerror="this.src=fallbackImage('${game}')"></div><div><span class="section-kicker">${meta.publisher}</span><h1>${game}</h1><p>${meta.subtitle}</p><div class="hero-tags"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 10-13h-7l1-7Z"/></svg>Fast delivery</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Secure checkout</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>${regions.join(' • ') || 'Global'}</span></div></div></div>
+      <div class="game-page-hero-main"><div class="large-game-icon ${meta.imageType==='wordmark'?'wordmark-frame':''}"><img class="${meta.imageType==='wordmark'?'wordmark-icon':''}" src="${meta.image}" alt="${game} ${meta.imageType==='wordmark'?'wordmark':'icon'}" onerror="this.src=fallbackImage('${game}')"></div><div><span class="section-kicker">${meta.publisher}</span><h1>${game}</h1><p>${meta.subtitle}</p><div class="hero-tags"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 10-13h-7l1-7Z"/></svg>Catalog preview</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Purchases soon</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>${regions.join(' • ') || 'Global'}</span></div></div></div>
     </div>
 
     <div class="product-page-grid">
       <div class="packages-column">
-        <div class="page-heading"><div><span class="section-kicker">AVAILABLE PACKAGES</span><h2>Choose your package.</h2><p>Select a package below. You can review your player details and payment method in checkout.</p></div><a class="mini-back" onclick="goHome()">Browse another game →</a></div>
+        <div class="page-heading"><div><span class="section-kicker">PACKAGE PREVIEW</span><h2>Explore the options.</h2><p>Browse package details and indicative pricing. Checkout will open when secure ordering is ready.</p></div><a class="mini-back" onclick="goHome()">Browse another game →</a></div>
         ${[...grouped.entries()].map(([region, arr]) => renderRegion(region, arr)).join('')}
       </div>
       <aside class="info-rail"><div class="info-card"><span class="info-number">01</span><h3>What you'll need</h3><div class="info-fields">${[...new Set(items.flatMap(p=>p.fields||[]))].map(f=>`<span>${fieldLabel(f)}</span>`).join('')}</div><p>Only enter the details shown for the package. Never share your game password.</p></div><div class="info-card"><span class="info-number">02</span><h3>Delivery</h3><p>Orders are routed after your payment is verified. Delivery speed depends on the connected supplier and game.</p></div><div class="info-card accent"><span class="info-number">03</span><h3>Need help?</h3><p>Keep your order ID. Support can use it to locate your payment and fulfillment status.</p><a href="/#support">Contact support →</a></div></aside>
@@ -164,7 +164,7 @@ function openBuy(id) {
   const p = products.find(x=>x.id===id); if(!p) return;
   const meta = getMeta(p.game);
   $('#modal').classList.add('open'); $('#modal').setAttribute('aria-hidden','false'); document.body.classList.add('modal-open');
-  $('#modalBody').innerHTML = `<div class="checkout-head"><img class="checkout-icon" src="${meta.image}" alt="${p.game}" onerror="this.src=fallbackImage('${p.game}')"><div><span class="section-kicker">CHECKOUT PREVIEW</span><h2>${p.game}</h2><p>${p.title} • ${p.region}</p></div></div>
+  $('#modalBody').innerHTML = `<div class="checkout-head"><img class="checkout-icon ${meta.imageType==='wordmark'?'wordmark-icon':''}" src="${meta.image}" alt="${p.game} ${meta.imageType==='wordmark'?'wordmark':'icon'}" onerror="this.src=fallbackImage('${p.game}')"><div><span class="section-kicker">CHECKOUT PREVIEW</span><h2>${p.game}</h2><p>${p.title} • ${p.region}</p></div></div>
     <div class="checkout-body"><div class="preview-notice"><span aria-hidden="true">i</span><div><strong>Purchases are not live yet</strong><p>This is a visual preview only. Don’t enter player details or payment information. Nothing will be submitted or charged.</p></div></div>
     <div class="checkout-section preview-fields"><div class="checkout-section-title"><span>1</span><div><b>Player information</b><small>Requested when secure ordering is available.</small></div></div><div class="info-fields">${(p.fields||[]).map(f=>`<span>${fieldLabel(f)}</span>`).join('')}</div></div>
     <div class="checkout-section"><div class="checkout-section-title"><span>2</span><div><b>Payment</b><small>Verified payment options will appear here after setup.</small></div></div><div class="payment-coming-soon">Payment methods coming soon</div></div>

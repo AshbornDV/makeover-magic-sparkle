@@ -325,3 +325,12 @@ html[data-theme="light"] .preview-notice{background:#f0f6f1;border-color:#d5e5d9
 html[data-theme="light"] .preview-notice>span{color:#fff}
 html[data-theme="light"] .preview-notice strong{color:#293a31}
 html[data-theme="light"] .payment-coming-soon{border-color:#cbd9d0}
+
+/* Preserve the source UI's dedicated wordmark treatment across every game-icon surface. */
+.game-card-image.wordmark-frame,.large-game-icon.wordmark-frame,.preview-game.wordmark-frame{background:linear-gradient(145deg,#390c19,#8f273d)}
+.game-card-image img.wordmark-icon{width:74%;height:auto;max-height:68%;border:0;border-radius:0;background:transparent;box-shadow:none;object-fit:contain;filter:brightness(0) invert(1)}
+.large-game-icon img.wordmark-icon{width:90%;height:auto;max-height:72%;border:0;border-radius:0;background:transparent;box-shadow:none;object-fit:contain;filter:brightness(0) invert(1)}
+.preview-game img.wordmark-icon{width:76%;height:auto;max-height:72%;border:0;border-radius:0;background:transparent;box-shadow:none;object-fit:contain;filter:brightness(0) invert(1)}
+.checkout-icon.wordmark-icon{padding:8px;border:0;border-radius:15px;background:linear-gradient(145deg,#390c19,#8f273d);box-shadow:none;object-fit:contain;filter:brightness(0) invert(1)}
+html[data-theme="light"] .game-card-image.wordmark-frame,html[data-theme="light"] .large-game-icon.wordmark-frame,html[data-theme="light"] .preview-game.wordmark-frame{background:linear-gradient(145deg,#390c19,#8f273d)}
+html[data-theme="light"] .game-card-image img.wordmark-icon,html[data-theme="light"] .large-game-icon img.wordmark-icon,html[data-theme="light"] .preview-game img.wordmark-icon{border:0;background:transparent;box-shadow:none;filter:brightness(0) invert(1)}
