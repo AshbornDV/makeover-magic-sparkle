@@ -99,7 +99,6 @@ function renderHome() {
     ['ALL','All games'],
     ['MOBILE','Mobile'],
     ['PC','PC & Wallets'],
-    ['OTHER','More']
   ];
   $('#filters').innerHTML = categories.map(([key,label]) => `<button class="tab ${activeCategory===key?'active':''}" onclick="setCategory('${key}')">${label}</button>`).join('');
 
@@ -162,13 +161,109 @@ function renderGamePage(slug) {
 function renderRegion(region, arr) {
   const ordered = [...arr].sort((a,b)=>a.displayPrice-b.displayPrice);
   const popular = ordered.filter(p=>p.hot);
-  const featured = (popular.length ? [...popular,...ordered.filter(p=>!popular.includes(p))] : ordered).slice(0,3);
-  const featuredIds = new Set(featured.map(p=>p.id));
-  const remaining = ordered.filter(p=>!featuredIds.has(p.id));
-  const tile = p => `<article class="package-row package-tile ${p.hot?'hot':''}"><div class="package-icon">${packageSymbol(p.units)}</div><div class="package-copy"><span>${p.hot?'POPULAR':'PACKAGE'}</span><h4>${p.title}</h4><p>${p.region && p.region!=='Global'?p.region:(p.region==='Global' && p.game==='Steam Wallet'?'Global · account region required':p.game==='Brawl Stars'?'In-game store offer · Supercell ID required':'Instant top-up')}</p></div><div class="package-price"><strong>${money(p.displayPrice,currency)}</strong><button aria-label="Buy ${p.title}" onclick="openBuy('${p.id}')">Choose <span>↗</span></button></div></article>`;
-  return `<section class="region-block"><div class="region-title"><div><span class="section-kicker">REGION</span><h3>${region}</h3></div><span>${arr.length} package${arr.length===1?'':'s'}</span></div><div class="package-list featured-packages">${featured.map(tile).join('')}</div>${remaining.length?`<details class="all-packages"><summary><span>Browse ${remaining.length} more package${remaining.length===1?'':'s'}</span><span class="catalog-count">${arr.length} total <b aria-hidden="true">⌄</b></span></summary><div class="package-list all-package-grid">${remaining.map(tile).join('')}</div></details>`:''}</section>`;
+  const orderedAll = popular.length ? [...popular,...ordered.filter(p=>!popular.includes(p))] : ordered;
+  const tile = p => `<article class="package-row package-tile ${p.hot?'hot':''}">${renderPackageIcon(p)}<div class="package-copy"><span>${p.hot?'POPULAR':'PACKAGE'}</span><h4>${p.title}</h4><p>${p.region && p.region!=='Global'?p.region:(p.region==='Global' && p.game==='Steam Wallet'?'Global · account region required':p.game==='Brawl Stars'?'In-game store offer · Supercell ID required':'Instant top-up')}</p></div><div class="package-price"><strong>${money(p.displayPrice,currency)}</strong><button aria-label="Buy ${p.title}" onclick="openBuy('${p.id}')">Choose <span>↗</span></button></div></article>`;
+  return `<section class="region-block"><div class="region-title"><div><span class="section-kicker">REGION</span><h3>${region}</h3></div><span>${arr.length} package${arr.length===1?'':'s'}</span></div><div class="package-list featured-packages package-catalog-grid">${orderedAll.map(tile).join('')}</div></section>`;
 }
-function packageSymbol(units='') { if(/diamond/i.test(units)) return '◆'; if(/uc/i.test(units)) return '◈'; if(/vp/i.test(units)) return 'V'; if(/robux/i.test(units)) return 'R'; if(/crystal|shard|mono/i.test(units)) return '✦'; if(/wallet|\$/i.test(units)) return '$'; if(/gold/i.test(units)) return 'G'; if(/token/i.test(units)) return 'T'; if(/gem/i.test(units)) return '◉'; if(/pass/i.test(units)) return '✦'; return '＋'; }
+function currencyIconAsset(p) {
+  const icons = {
+    'Mobile Legends':'/assets/currency/ml-diamond.png',
+    'Free Fire':'/assets/currency/ff-diamond.png',
+    'PUBG Mobile':'/assets/currency/pubg-uc.png',
+    'Genshin Impact':'/assets/currency/genshin-crystal.webp',
+    'Honkai: Star Rail':'/assets/currency/honkai-shards.png',
+    'Zenless Zone Zero':'/assets/currency/zzz-monochrome.webp',
+    'Call of Duty Mobile':'/assets/currency/codm-cp.png',
+    'Honor of Kings':'/assets/currency/honor-tokens.webp',
+    'Brawl Stars':'/assets/currency/brawl-gem.png',
+    'Roblox':'/assets/currency/robux.svg',
+    'Steam Wallet':'/assets/games/steam.jpg',
+    'Valorant':'/assets/currency/valorant-points.png',
+    'Blood Strike':'/assets/currency/blood-strike-gold.webp'
+  };
+  return icons[p.game] || '';
+}
+function packageImageAsset(p) {
+  // Product artwork is kept local: a pass gets its own art; denomination packs
+  // keep the game's real currency symbol and show the quantity beside it.
+  const productArt = {
+    'mlbb-weekly-pass':'/assets/packages/ml-weekly-pass.png',
+    'mlbb-weekly-elite':'/assets/packages/ml-weekly-elite.webp',
+    'mlbb-monthly-epic':'/assets/packages/ml-monthly-epic.webp',
+    'mlbb-twilight':'/assets/packages/ml-twilight-pass.webp',
+    'hsr-express-pass':'/assets/packages/hsr-express-supply-pass.png',
+    'zzz-inter-knot':'/assets/packages/zzz-inter-knot-membership.png',
+    'genshin-welkin':'/assets/packages/genshin-welkin-moon.jpg',
+    'hok-weekly':'/assets/packages/hok-weekly-card-thumb.jpg',
+    'hok-weekly-plus':'/assets/packages/hok-weekly-card-thumb.jpg',
+    'ff-weekly':'/assets/packages/free-fire-weekly-membership.webp',
+    'ff-monthly':'/assets/packages/free-fire-monthly-membership.png',
+    'brawl-pass':'/assets/packages/brawl-pass-plus.jpg',
+    'brawl-pass-plus':'/assets/packages/brawl-pass-plus.jpg'
+  };
+  return productArt[p.id] || '';
+}
+function renderPackageIcon(p) {
+  const type = packageArtType(p);
+  const classes = `package-icon package-icon--${packageKind(p)} package-icon--${type}`;
+  const productArt = packageImageAsset(p);
+  if (productArt) {
+    const fallback = currencyIconAsset(p) || '';
+    return `<div class="${classes} package-icon--product" aria-hidden="true"><img src="${productArt}" alt="" loading="lazy" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><img class="package-icon-fallback" src="${fallback}" alt="" hidden></div>`;
+  }
+  if (type !== 'currency') return `<div class="${classes}" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false">${packageArtwork(p)}</svg></div>`;
+  const asset = currencyIconAsset(p);
+  const amount = packageQuantity(p);
+  const fallback = `<svg class="currency-fallback" viewBox="0 0 48 48" focusable="false" hidden>${packageArtwork(p)}</svg>`;
+  const coins = asset
+    ? Array.from({length:amount.stack},()=>`<span class="currency-chip"><img src="${asset}" alt="" loading="lazy" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false">${fallback}</span>`).join('')
+    : `<span class="currency-chip">${fallback.replace(' hidden','')}</span>`;
+  return `<div class="${classes}" aria-hidden="true"><span class="currency-stack currency-stack--${amount.stack}">${coins}</span><span class="package-count">${amount.label}</span></div>`;
+}
+function packageArtType(p) {
+  const title = `${p.title||''} ${p.units||''}`.toLowerCase();
+  if (/first\s+recharge|first\s+top.?up/.test(title)) return 'first-recharge';
+  if (/twilight/.test(title)) return 'pass-twilight';
+  if (/weekly.*pass|weekly diamond pass|weekly pass/.test(title)) return 'pass-weekly';
+  if (/monthly.*pass|monthly card|welkin|express supply|membership/.test(title)) return 'pass-monthly';
+  if (/\bpass\b/.test(title)) return 'pass-standard';
+  if (/bundle|\bpack\b/.test(title)) {
+    if (/weekly/.test(title)) return 'bundle-weekly';
+    if (/monthly|epic|legendary/.test(title)) return 'bundle-premium';
+    return 'bundle-standard';
+  }
+  return 'currency';
+}
+function packageQuantity(p) {
+  const values = [...String(p.units||p.title||'').matchAll(/[\d,]+/g)].map(m=>Number(m[0].replace(/,/g,''))).filter(Number.isFinite);
+  const amount = values.reduce((sum,n)=>sum+n,0);
+  const short = n => n >= 10000 ? `${(n/1000).toFixed(0)}k` : n >= 1000 ? `${(n/1000).toFixed(n%1000?1:0)}k` : String(n);
+  const label = values.length>1 ? `${short(values[0])}+${short(values[1])}` : values.length ? short(values[0]) : 'SET';
+  return {label,stack:amount<=100?1:amount<=300?2:amount<=1000?3:4};
+}
+function packageKind(p) {
+  const value = `${p.units||''} ${p.title||''} ${p.game||''}`.toLowerCase();
+  if (/diamond|crystal|shard|monochrome|gem/.test(value)) return 'crystal';
+  if (/pass|membership|welkin|express/.test(value)) return 'pass';
+  if (/wallet|steam|robux/.test(value)) return 'wallet';
+  if (/uc|gold|coin|cp|token|vp|point/.test(value)) return 'coin';
+  return 'bundle';
+}
+function packageArtwork(p) {
+  const artType = packageArtType(p);
+  if (artType === 'pass-weekly') return '<rect class="art-pass" x="8" y="4" width="32" height="40" rx="5"/><path class="art-pass-line" d="M8 14h32"/><circle class="art-pass-dot" cx="15" cy="9" r="1.5"/><circle class="art-pass-dot" cx="33" cy="9" r="1.5"/><path class="art-pass-star" d="m24 18 2.2 4.4 4.8.7-3.5 3.4.8 4.8-4.3-2.3-4.3 2.3.8-4.8-3.5-3.4 4.8-.7L24 18Z"/><text class="art-pass-label" x="24" y="39" text-anchor="middle">7D</text>';
+  if (artType === 'pass-monthly') return '<rect class="art-pass-back" x="11" y="5" width="30" height="38" rx="5"/><rect class="art-pass" x="7" y="8" width="30" height="36" rx="5"/><path class="art-pass-line" d="M7 17h30"/><path class="art-pass-star" d="m22 22 2 4 4.5.7-3.2 3.1.8 4.4-4.1-2.1-4.1 2.1.8-4.4-3.2-3.1 4.5-.7 2-4Z"/><text class="art-pass-label" x="22" y="15" text-anchor="middle">30D</text>';
+  if (artType === 'pass-twilight') return '<rect class="art-pass" x="7" y="7" width="34" height="36" rx="6"/><path class="art-pass-line" d="M7 16h34"/><path class="art-moon" d="M27 20a8 8 0 1 0 8 11 7 7 0 0 1-8-11Z"/><path class="art-pass-star" d="m17 22 1.4 2.8 3.1.5-2.2 2.1.5 3.1-2.8-1.5-2.8 1.5.5-3.1-2.2-2.1 3.1-.5L17 22Z"/><text class="art-pass-label" x="24" y="39" text-anchor="middle">PASS</text>';
+  if (artType === 'pass-standard') return '<path class="art-ticket" d="M8 10h32v8a5 5 0 0 0 0 10v8H8v-8a5 5 0 0 0 0-10v-8Z"/><path class="art-pass-line" d="M24 13v4m0 12v4"/><path class="art-pass-star" d="m17 20 1.8 3.7 4.1.6-3 2.9.7 4.1-3.6-1.9-3.6 1.9.7-4.1-3-2.9 4.1-.6L17 20Z"/>';
+  if (artType.startsWith('bundle')) return '<path class="art-bundle-back" d="M9 17h30l-3 24H12L9 17Z"/><path class="art-bundle-lid" d="M6 14h36v7H6z"/><path class="art-bundle-ribbon" d="M20 14h8v27h-8z"/><path class="art-bundle-bow" d="M24 14c-7-1-11-4-8-7 3-2 7 3 8 7Zm0 0c7-1 11-4 8-7-3-2-7 3-8 7Z"/><path class="art-bundle-gem" d="m35 27 5 4-5 5-5-5 5-4Z"/>';
+  if (artType === 'first-recharge') return '<path class="art-halo" d="M24 3 39 16 30 40H18L9 16 24 3Z"/><path class="art-gem" d="m24 7 10 10-6 18h-8l-6-18L24 7Z"/><path class="art-glint" d="m24 7 4 10h-8l4-10Z"/><path class="art-first-bolt" d="M27 19h-6l-2 8h5l-1 6 7-10h-5l2-4Z"/>';
+  const kind = packageKind(p);
+  if (kind === 'crystal') return '<path class="art-halo" d="M24 3 39 16 30 40H18L9 16 24 3Z"/><path class="art-gem" d="m24 7 10 10-6 18h-8l-6-18L24 7Z"/><path class="art-glint" d="m24 7 4 10h-8l4-10Z"/>';
+  if (kind === 'pass') return '<path class="art-halo" d="M24 4 39 10v12c0 10-6 16-15 22C15 38 9 32 9 22V10l15-6Z"/><path class="art-mark" d="m24 13 2.7 6.1 6.6.6-5 4.3 1.5 6.5-5.8-3.4-5.8 3.4 1.5-6.5-5-4.3 6.6-.6L24 13Z"/>';
+  if (kind === 'wallet') return '<rect class="art-halo" x="7" y="11" width="34" height="27" rx="7"/><path class="art-mark" d="M8 17h32v5H8z"/><circle class="art-dot" cx="31" cy="29" r="3"/>';
+  if (kind === 'coin') return '<circle class="art-halo" cx="24" cy="24" r="18"/><circle class="art-mark-ring" cx="24" cy="24" r="13"/><path class="art-mark" d="M26.5 15v2.3c3 .4 4.8 2.2 4.9 4.7h-4.1c-.1-1.1-.9-1.8-2.3-1.8-1.2 0-1.9.5-1.9 1.3 0 .9 1 1.3 3.1 1.8 3.3.8 5.4 1.9 5.4 5 0 2.8-2 4.7-5.1 5.1v2.2h-3.1v-2.2c-3.2-.4-5.2-2.3-5.3-5.1h4.1c.1 1.2 1 1.9 2.5 1.9 1.3 0 2.2-.5 2.2-1.4s-.9-1.3-3.1-1.9c-3.4-.8-5.4-2-5.4-5 0-2.6 1.9-4.4 5-4.8V15h3.1Z"/>';
+  return '<path class="art-halo" d="m24 4 5.8 11.8L43 17.6l-9.5 9.2 2.2 13L24 33.7l-11.7 6.1 2.2-13L5 17.6l13.2-1.8L24 4Z"/><circle class="art-dot" cx="24" cy="23" r="4"/>';
+}
 
 function openBuy(id) {
   const p = products.find(x=>x.id===id); if(!p) return;
