@@ -334,3 +334,51 @@ html[data-theme="light"] .payment-coming-soon{border-color:#cbd9d0}
 .checkout-icon.wordmark-icon{padding:8px;border:0;border-radius:15px;background:linear-gradient(145deg,#390c19,#8f273d);box-shadow:none;object-fit:contain;filter:brightness(0) invert(1)}
 html[data-theme="light"] .game-card-image.wordmark-frame,html[data-theme="light"] .large-game-icon.wordmark-frame,html[data-theme="light"] .preview-game.wordmark-frame{background:linear-gradient(145deg,#390c19,#8f273d)}
 html[data-theme="light"] .game-card-image img.wordmark-icon,html[data-theme="light"] .large-game-icon img.wordmark-icon,html[data-theme="light"] .preview-game img.wordmark-icon{border:0;background:transparent;box-shadow:none;filter:brightness(0) invert(1)}
+
+/* Homepage hero follows the supplied Lovable reference; the rest of the store keeps its current layout. */
+.hero-shell{--hero-accent:#12c99b;position:relative;isolation:isolate;max-width:1320px;padding-top:80px;padding-bottom:68px;gap:66px}
+.hero-shell:before{content:"";position:absolute;z-index:-2;top:0;bottom:0;left:0;width:100%;background-image:linear-gradient(rgba(142,164,166,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(142,164,166,.075) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(180deg,#000 8%,rgba(0,0,0,.72) 72%,transparent 100%);pointer-events:none}
+.hero-shell:after{content:"";position:absolute;z-index:-1;width:560px;height:440px;right:0;top:60px;border-radius:50%;background:radial-gradient(ellipse,rgba(18,201,155,.11),transparent 68%);filter:blur(26px);pointer-events:none}
+.hero-shell .eyebrow-pill{color:#90a3a2;border-color:rgba(132,161,157,.2);background:rgba(18,35,39,.6)}
+.hero-shell .eyebrow-pill>span:first-child,.hero-eyebrow-copy{color:var(--hero-accent)}
+.hero-shell .hero-copy h1{max-width:700px;font-size:clamp(52px,6.2vw,82px);line-height:.98;letter-spacing:-.06em}
+.hero-shell .hero-copy h1 span{color:var(--hero-accent)}
+.hero-shell .hero-copy>p{max-width:590px;font-size:15px;color:#a4b2b4}
+.hero-shell .btn-primary{background:var(--hero-accent);border-color:var(--hero-accent);color:#06251d;box-shadow:0 12px 30px rgba(18,201,155,.15)}
+.hero-shell .btn-primary:hover{background:#35dfb2;border-color:#35dfb2}
+.hero-shell .btn-secondary{background:rgba(25,39,47,.9);border-color:rgba(150,169,177,.24);color:#d5e0e1}
+.hero-shell .hero-trust{color:#8e9e9f;font-size:10px}
+.hero-shell .demo-banner{display:flex;border-color:rgba(18,201,155,.25);background:rgba(18,201,155,.07);color:#b1c2c0;font-size:11px}
+.hero-shell .demo-banner span{color:var(--hero-accent)}
+.featured-card{position:relative;width:100%;max-width:490px;margin-left:auto;padding:20px;border:1px solid rgba(193,221,213,.18);border-radius:29px;background:linear-gradient(145deg,rgba(27,92,82,.96),rgba(17,55,54,.98));box-shadow:0 30px 86px rgba(0,0,0,.35),0 0 65px rgba(18,201,155,.09)}
+.featured-card-top{display:flex;align-items:center;justify-content:space-between;margin:2px 1px 16px;color:#c0d4d1;font-size:10px;font-weight:900;letter-spacing:.13em}
+.featured-card-top b{display:flex;align-items:center;gap:7px;color:#d6e8e4;font-size:9px}
+.featured-card-top i{width:7px;height:7px;border-radius:50%;background:#59e2b9;box-shadow:0 0 12px rgba(89,226,185,.8)}
+.featured-image{position:relative;aspect-ratio:1.56;overflow:hidden;border:1px solid rgba(224,241,235,.13);border-radius:19px;background:#10242b}
+.featured-image:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(180deg,transparent,rgba(5,17,22,.45));pointer-events:none}
+.featured-image img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+.featured-card:hover .featured-image img{transform:scale(1.025)}
+.featured-image>span{position:absolute;z-index:1;bottom:13px;left:14px;padding:6px 9px;border:1px solid rgba(255,255,255,.12);border-radius:7px;background:rgba(7,17,20,.64);color:#e4efec;font-size:10px;font-weight:700;backdrop-filter:blur(10px)}
+.featured-details{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:19px 2px 16px}
+.featured-details h2{margin:0;color:#eef7f4;font-size:20px;letter-spacing:-.03em}
+.featured-details p{margin:5px 0 0;color:#b4cac5;font-size:11px}
+.featured-price{text-align:right;white-space:nowrap}
+.featured-price strong{display:block;color:#4ce0b6;font-family:'Space Grotesk','Manrope',sans-serif;font-size:22px;letter-spacing:-.04em}
+.featured-price small{display:block;margin-top:2px;color:#aac3bd;font-size:9px}
+.featured-cta{display:flex;width:100%;align-items:center;justify-content:center;gap:9px;padding:13px;border:1px solid var(--hero-accent);border-radius:12px;background:var(--hero-accent);color:#06251d;font-size:12px;font-weight:900;cursor:pointer;transition:background .2s ease,transform .2s ease}
+.featured-cta:hover{transform:translateY(-1px);background:#35dfb2}
+html[data-theme="light"] .hero-shell:before{background-image:linear-gradient(rgba(93,124,117,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(93,124,117,.10) 1px,transparent 1px);opacity:.72}
+html[data-theme="light"] .hero-shell:after{background:radial-gradient(ellipse,rgba(18,201,155,.12),transparent 68%)}
+html[data-theme="light"] .hero-shell .eyebrow-pill{color:#536c63;border-color:#d8e5de;background:rgba(248,251,249,.84)}
+html[data-theme="light"] .hero-shell .hero-copy>p{color:#596f67}
+html[data-theme="light"] .hero-shell .hero-trust{color:#5f756d}
+html[data-theme="light"] .hero-shell .btn-secondary{background:#fff;border-color:#d4e0da;color:#3c5148}
+html[data-theme="light"] .hero-shell .demo-banner{color:#526960}
+html[data-theme="light"] .featured-card{border-color:#d3e4dc;background:linear-gradient(145deg,#d9eee5,#c9e3d8);box-shadow:0 22px 62px rgba(44,82,65,.16),0 0 54px rgba(18,201,155,.07)}
+html[data-theme="light"] .featured-card-top,html[data-theme="light"] .featured-card-top b{color:#4c6a5e}
+html[data-theme="light"] .featured-details h2{color:#263d34}
+html[data-theme="light"] .featured-details p,html[data-theme="light"] .featured-price small{color:#5a746a}
+html[data-theme="light"] .featured-price strong{color:#178565}
+html[data-theme="light"] .featured-cta{color:#fff}
+@media(max-width:1050px){.hero-shell{gap:42px}.featured-card{max-width:620px;margin:0}}
+@media(max-width:760px){.hero-shell{padding-top:54px;padding-bottom:44px;gap:34px}.hero-shell .hero-copy h1{font-size:clamp(46px,10vw,66px)}.hero-shell .hero-copy>p{font-size:14px}.featured-card{padding:16px;border-radius:23px}.featured-details h2{font-size:18px}}

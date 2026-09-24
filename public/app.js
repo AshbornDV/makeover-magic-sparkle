@@ -74,10 +74,19 @@ async function refreshPage() {
 }
 
 function renderPreviewGames(games) {
-  $('#previewGames').innerHTML = games.slice(0,4).map(g => {
+  const host = $('#previewGames');
+  if (!host) return;
+  host.innerHTML = games.slice(0,4).map(g => {
     const m = getMeta(g);
     return `<button class="preview-game ${m.imageType==='wordmark'?'wordmark-frame':''}" onclick="openGame('${m.slug}')"><img class="${m.imageType==='wordmark'?'wordmark-icon':''}" src="${m.image}" alt="${g}" onerror="this.src=fallbackImage('${g}')"><span>${g}</span><b>↗</b></button>`;
   }).join('');
+}
+
+function renderFeaturedCard() {
+  const product = products.find(p=>p.game==='Mobile Legends'&&p.hot) || products.find(p=>p.game==='Mobile Legends');
+  if (!product || !$('#featuredPackage')) return;
+  $('#featuredPackage').textContent = `${product.title} · ${product.region || 'Global'}`;
+  $('#featuredPrice').textContent = money(product.displayPrice,currency);
 }
 
 function renderHome() {
@@ -85,6 +94,7 @@ function renderHome() {
   const q = ($('#search')?.value || '').toLowerCase().trim();
   const games = [...new Set(products.map(p => p.game))];
   $('#gameCount').textContent = games.length;
+  renderFeaturedCard();
   const categories = [
     ['ALL','All games'],
     ['MOBILE','Mobile'],
