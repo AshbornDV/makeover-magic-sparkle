@@ -10,7 +10,7 @@ const publicDir = path.join(__dirname, 'public');
 const dataDir = path.join(__dirname, 'data');
 const configPath = path.join(dataDir, 'config.json');
 const ordersPath = process.env.ORDERS_PATH || path.join(dataDir, 'orders.json');
-// Keep live checkout closed until signed payment verification and an authorized supplier adapter exist.
+// Wallet-funded supplier orders stay closed until customer payment verification and durable order storage exist.
 const livePaymentsReady = false;
 
 async function readJson(file, fallback) { try { return JSON.parse(await fs.readFile(file,'utf8')); } catch { return fallback; } }
@@ -24,6 +24,37 @@ function id(prefix='ORD') { return `${prefix}-${new Date().toISOString().replace
 function rateFor(config, currency) { return Number(config.demoRatesToNPR?.[currency] || 1); }
 function displayPrice(config, product, currency) { const r = rateFor(config,currency); const value = currency==='NPR' ? product.priceNpr : product.priceNpr / r; return Math.max(1, Math.round(value*100)/100); }
 function hmacBase64(message, secret) { return crypto.createHmac('sha256', secret).update(message).digest('base64'); }
+
+async function ez2TopupRequest(endpoint, {method='GET', body} = {}) {
+  const apiKey = process.env.EZ2TOPUP_API_KEY;
+  if (!apiKey) throw Object.assign(new Error('EZ2TopUp API key is not configured on the server.'), {status:503});
+  const base = (process.env.EZ2TOPUP_API_BASE || 'https://ez2topup.com/api/v1/mcp').replace(/\/+$/, '');
+  const target = new URL(`${base}/${endpoint}`);
+  const response = await fetch(target, {
+    method,
+    headers: {
+      accept:'application/json',
+      authorization:`Bearer ${apiKey}`,
+      ...(body ? {'content-type':'application/json'} : {})
+    },
+    ...(body ? {body:JSON.stringify(body)} : {}),
+    signal:AbortSignal.timeout(12000),
+    redirect:'error'
+  });
+  const text = await response.text();
+  let data;
+  try { data = text ? JSON.parse(text) : {}; } catch { data = {message:'Supplier returned an unreadable response.'}; }
+  if (!response.ok) throw Object.assign(new Error('EZ2TopUp request failed.'), {status:502, supplierStatus:response.status});
+  return data;
+}
+
+function adminAuthorized(req) {
+  const supplied = req.headers['x-admin-key'];
+  const expected = process.env.ADMIN_KEY;
+  if (typeof supplied !== 'string' || !expected) return false;
+  const a = Buffer.from(supplied), b = Buffer.from(expected);
+  return a.length === b.length && crypto.timingSafeEqual(a, b);
+}
 
 async function createEsewaPayment(order, cfg) {
   const code = process.env.ESEWA_PRODUCT_CODE;
@@ -71,7 +102,7 @@ async function routeSupplier(order) {
 
 async function api(req,res,url) {
   const cfg = await readConfig();
-  if (req.method==='GET' && url.pathname==='/api/config') return json(res,200,{brand:cfg.brand,countries:cfg.countries,demoMode:true,paymentsEnabled:livePaymentsReady});
+  if (req.method==='GET' && url.pathname==='/api/config') return json(res,200,{brand:cfg.brand,countries:cfg.countries,demoMode:false,paymentsEnabled:livePaymentsReady,orderingEnabled:livePaymentsReady,accountsEnabled:false});
   if (req.method==='GET' && url.pathname==='/api/products') {
     const currency=url.searchParams.get('currency')||'NPR';
     const products=cfg.products.map(p=>({...p,displayPrice:displayPrice(cfg,p,currency),currency}));
@@ -82,25 +113,53 @@ async function api(req,res,url) {
     const orderId=decodeURIComponent(url.pathname.split('/').pop()); const orders=await readOrders(); const o=orders.find(x=>x.id===orderId); if(!o) return json(res,404,{error:'Order not found'}); return json(res,200,{order:{...o,internal:null}});
   }
   if (req.method==='POST' && url.pathname==='/api/orders') {
-    if (!livePaymentsReady) return json(res,503,{error:'Demo preview only. Order placement is not available yet.'});
+    if (!livePaymentsReady) return json(res,503,{error:'Order placement is not available yet.'});
     const b=await parseBody(req); const p=cfg.products.find(x=>x.id===b.productId); if(!p) return json(res,400,{error:'Invalid product'});
     const currency=b.currency||'NPR'; const total=displayPrice(cfg,p,currency); const order={id:id(),createdAt:new Date().toISOString(),status:'AWAITING_PAYMENT',paymentStatus:'UNPAID',currency,total,productId:p.id,productTitle:p.title,game:p.game,region:p.region,gameData:b.gameData||{},customer:b.customer||{},paymentMethod:b.paymentMethod||'',sourceIp:req.socket.remoteAddress};
     const orders=await readOrders(); orders.push(order); await writeJson(ordersPath,orders); return json(res,201,{order});
   }
   if (req.method==='POST' && url.pathname==='/api/payments/initiate') {
-    if (!livePaymentsReady) return json(res,503,{error:'Payments are not enabled. This storefront is currently a preview.'});
+    if (!livePaymentsReady) return json(res,503,{error:'Payments are not enabled yet.'});
     const b=await parseBody(req); const orders=await readOrders(); const order=orders.find(x=>x.id===b.orderId); if(!order) return json(res,404,{error:'Order not found'});
     try { let payment; if(b.provider==='esewa') payment=await createEsewaPayment(order,cfg); else if(b.provider==='khalti') payment=await createKhaltiPayment(order); else payment={type:'manual',message:'This provider needs merchant onboarding/configuration.'}; order.paymentMethod=b.provider; order.paymentStatus='INITIATED'; await writeJson(ordersPath,orders); return json(res,200,{orderId:order.id,payment}); }
     catch(e){ return json(res,400,{error:e.message}); }
   }
   if (req.method==='POST' && url.pathname==='/api/demo/mark-paid') {
-    return json(res,503,{error:'Demo preview only. Payments cannot be simulated or collected.'});
+    return json(res,503,{error:'Payment simulation is disabled.'});
   }
   if (req.method==='POST' && url.pathname==='/api/admin/products') {
-    const key=req.headers['x-admin-key']; if(!key || key!==process.env.ADMIN_KEY) return json(res,401,{error:'Unauthorized'}); const b=await parseBody(req); if(!b.id||!b.title||!b.game||!b.priceNpr) return json(res,400,{error:'Missing product fields'}); cfg.products.push({...b}); await writeJson(configPath,cfg); return json(res,201,{product:b});
+    if(!adminAuthorized(req)) return json(res,401,{error:'Unauthorized'}); const b=await parseBody(req); if(!b.id||!b.title||!b.game||!b.priceNpr) return json(res,400,{error:'Missing product fields'}); cfg.products.push({...b}); await writeJson(configPath,cfg); return json(res,201,{product:b});
   }
   if (req.method==='POST' && url.pathname==='/api/admin/providers-test') {
-    const key=req.headers['x-admin-key']; if(!key || key!==process.env.ADMIN_KEY) return json(res,401,{error:'Unauthorized'}); return json(res,200,{esewaConfigured:Boolean(process.env.ESEWA_PRODUCT_CODE&&process.env.ESEWA_SECRET_KEY),khaltiConfigured:Boolean(process.env.KHALTI_SECRET_KEY),supplierConfigured:Boolean(process.env.SUPPLIER_API_BASE&&process.env.SUPPLIER_API_KEY),demoMode:process.env.DEMO_MODE!=='false'});
+    if(!adminAuthorized(req)) return json(res,401,{error:'Unauthorized'}); return json(res,200,{esewaConfigured:Boolean(process.env.ESEWA_PRODUCT_CODE&&process.env.ESEWA_SECRET_KEY),khaltiConfigured:Boolean(process.env.KHALTI_SECRET_KEY),ez2TopupConfigured:Boolean(process.env.EZ2TOPUP_API_KEY),supplierConfigured:Boolean(process.env.EZ2TOPUP_API_KEY),demoMode:!livePaymentsReady});
+  }
+  if (url.pathname.startsWith('/api/admin/ez2topup/')) {
+    if(!adminAuthorized(req)) return json(res,401,{error:'Unauthorized'});
+    try {
+      if (req.method==='GET' && url.pathname==='/api/admin/ez2topup/status') {
+        await ez2TopupRequest('user/profile.php');
+        return json(res,200,{connected:true,ordersEnabled:livePaymentsReady});
+      }
+      if (req.method==='GET' && url.pathname==='/api/admin/ez2topup/games') {
+        const games=await ez2TopupRequest('catalog/games.php');
+        return json(res,200,{games});
+      }
+      if (req.method==='GET' && url.pathname==='/api/admin/ez2topup/packages') {
+        const gameSlug=url.searchParams.get('game_slug')||'';
+        if(!/^[a-z0-9-]{2,80}$/i.test(gameSlug)) return json(res,400,{error:'Provide a valid game_slug.'});
+        const packages=await ez2TopupRequest(`catalog/packages.php?game_slug=${encodeURIComponent(gameSlug)}`);
+        return json(res,200,{gameSlug,packages,priceMeaning:'EZ2TopUp wallet debit cost; not automatically a customer retail price.'});
+      }
+      if (req.method==='POST' && url.pathname==='/api/admin/ez2topup/verify-player') {
+        const b=await parseBody(req);
+        if(!/^[a-z0-9-]{2,80}$/i.test(b.game_slug||'') || !String(b.user_id||'').trim()) return json(res,400,{error:'Game and player ID are required.'});
+        const result=await ez2TopupRequest('player/verify.php',{method:'POST',body:{game_slug:b.game_slug,user_id:String(b.user_id).trim(),...(b.zone_id?{zone_id:String(b.zone_id).trim()}:{})}});
+        return json(res,200,{result});
+      }
+    } catch (error) {
+      const status=error.status===503?503:502;
+      return json(res,status,{error:status===503?error.message:'EZ2TopUp could not complete the request. Check server credentials and supplier availability.'});
+    }
   }
   return json(res,404,{error:'Not found'});
 }

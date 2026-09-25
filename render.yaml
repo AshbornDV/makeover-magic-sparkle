@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: nexa-topup-preview
+    name: nexa-topup
     runtime: node
     plan: free
     buildCommand: npm install
